@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <div className="h-full grid grid-cols-2 bg-gray-100 p-5">
         <div>
-          <h1 className="font-bold font-sans mb-3">PROGRAMUL DE LUCRU</h1>
+          <h1 className="font-bold font-sans mb-3">PROGRAM DE LUCRU</h1>
           <hr />
           <div className="flex flex-col justify-center  p-6 gap-2">
             {" "}
