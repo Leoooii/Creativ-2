@@ -1,56 +1,50 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+"use client";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import Image from "next/image";
+
+import ResponsiveCarousel from "./components/CarouselComponent";
+import Footer from "./components/Footer";
+import AboutUs from "./components/AboutUsComponent";
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+    <div className="container mx-auto p-4 h-full flex flex-col gap-5 ">
+      <ResponsiveCarousel />
+      <AboutUs />
+
+      <div className="rounded-xl px-20  h-96">
+        <Image src={"/images/work.jpg"} height={500} width={500} alt="worker" className="w-full rounded-xl h-96" />
+      </div>
+      <div className="h-full grid grid-cols-2 bg-gray-100 p-5">
+        <div>
+          <h1 className="font-bold font-sans mb-3">PROGRAM DE LUCRU</h1>
+          <hr />
+          <div className="flex flex-col justify-center  p-6 gap-2">
+            {" "}
+            <div className="flex">
+              <h1 className=" font-semibold">Luni-Vineri:</h1>
+              <h1 className="text-green-500 ml-1"> 8:00-16:00</h1>
+            </div>
+            <div className="flex">
+              <h1 className=" font-semibold">Sambata-Duminica:</h1>
+              <h1 className="text-blue-800 ml-1"> INCHIS</h1>
+            </div>
+            <div className="flex">
+              <h1 className=" font-semibold">Sediu:</h1>
+              <h1 className="text-blue-800 ml-1">Str. Bucuresti nr. 216, Varteju, Jud. Ilfov (pe Centura Bucuresti)</h1>
+            </div>
+          </div>
         </div>
+        <iframe
+          allowFullScreen
+          height="100%"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2831.962043261264!2d26.006014!3d44.367834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40adff8363bae4c5%3A0x9d630f984af38ef5!2sCREATIV%20TUB%20SRL!5e0!3m2!1sen!2sro!4v1633936462342!5m2!1sen!2sro"
+          style={{ border: 0, borderRadius: 10, height: 200 }}
+          title="location"
+          width="100%"
+        />
       </div>
-
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
+      <Footer />
+    </div>
   );
 }

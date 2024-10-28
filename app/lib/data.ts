@@ -1,0 +1,138 @@
+'use server'
+import { sql } from '@vercel/postgres';
+import { Material,Category } from './definitions';
+
+const ITEMS_PER_PAGE = 6;
+
+export async function fetchMaterials(
+  currentPage: number,
+  minPrice?: number,
+  maxPrice?: number
+): Promise<{ materialsData: Material[]; totalPages: number }> {
+  try {
+    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+    // Query-ul pentru materialele paginate
+    let query = sql<Material[]>`
+      SELECT * FROM Materials
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+    `;
+    
+    if (minPrice || maxPrice) {
+      query = sql<Material[]>`
+        SELECT * FROM Materials
+        WHERE price >= ${minPrice || 0}
+        AND price <= ${maxPrice || 999999}
+        
+        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+      `;
+    }
+
+    // Executarea query-ului pentru materiale
+    const materialsData = await query;
+
+    // Aflarea numărului total de pagini
+    const count = await sql`SELECT COUNT(*) FROM Materials   WHERE price >= ${minPrice || 0}
+        AND price <= ${maxPrice || 999999}`;
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+
+    // Returnează atât materialele, cât și numărul total de pagini
+    return {
+      materialsData: materialsData.rows.flat(),
+      totalPages
+    };
+  } catch (error) {
+    console.error('Failed to fetch materials:', error);
+    throw new Error('Failed to fetch materials');
+  }
+}
+
+export async function fetchCategories(){
+  try{
+    let query=sql<Category[]>`
+    SELECT * FROM Categories
+  `;
+
+    const materials=await query;
+    
+    return(materials.rows.flat())
+    
+
+  }catch (error) {
+    console.error('Failed to fetch materials:', error);
+    throw new Error('Failed to fetch materials');
+  }
+}
+
+
+
+export async function addMaterial(name: string, price: string, image_url: string,description:string,available:boolean, category:string) {
+  if (!name || !price || !image_url || !description ||!available || !category) {
+    throw new Error('All fields are required');
+  }
+console.log(name,price,image_url,description,available,category);
+
+  try {
+    await sql`
+      INSERT INTO Materials (name, price, image_url,description,available,category)
+      VALUES (${name}, ${Number(price)}, ${image_url},${description},${available},${category});
+    `;
+    const data = await sql<Material>`SELECT * FROM Materials`;
+    console.log(data.rows,'baa');
+    
+    return { message: 'Material added successfully',};
+  } catch (error) {
+    console.error('Failed to add material:', error);
+    throw new Error('Failed to add material');
+  }
+}
+export async function updateMaterial(id: number, name: string, price: number, image_url: string,description:string,category:string,available:boolean) {
+  if (!id || !name || !price || !image_url) {
+    throw new Error('ID, name, price, and image_url are required');
+  }
+  console.log('aici',id,price,name);
+  
+  try {
+    const result = await sql`
+      UPDATE Materials
+      SET name = ${name}, price = ${price}, image_url = ${image_url},description=${description},category=${category},available=${available}
+      WHERE id = ${id};
+    `;
+    
+    
+    // Verifică numărul de rânduri afectate
+    if (result.rowCount === 0) {
+      throw new Error('Material not found');
+    }
+    // alert('Ati reusit sa modificati materialul')
+    return { message: 'Material updated successfully' };
+  } catch (error) {
+    console.error('Failed to update material:', error);
+    throw new Error('Failed to update material');
+  }
+}
+
+export async function deleteMaterial(id: number) {
+  if (!id) {
+    throw new Error('ID is required');
+  }
+
+  try {
+    const result = await sql`
+      DELETE FROM Materials
+      WHERE id = ${id};
+    `;
+
+    // Verifică numărul de rânduri afectate
+    if (result.rowCount === 0) {
+      throw new Error('Material not found');
+    }
+
+    return { message: 'Material deleted successfully' };
+  } catch (error) {
+    console.error('Failed to delete material:', error);
+    throw new Error('Failed to delete material');
+  }
+}
+
+
