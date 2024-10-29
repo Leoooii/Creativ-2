@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { Material } from '@app/lib/definitions'
-import { deleteMaterial, updateMaterial } from '@app/lib/data'
+import React, { useState } from "react";
+import { Material } from "@app/lib/definitions";
+import { deleteMaterial, updateMaterial } from "@app/lib/data";
 import {
   Button,
   Card,
@@ -13,12 +13,12 @@ import {
   Input,
   Switch,
   Textarea
-} from '@nextui-org/react'
+} from "@nextui-org/react";
 
 interface MaterialProps {
-  material: Material
-  onDelete: () => Promise<void>
-  isEditable: boolean
+  material: Material;
+  onDelete: () => Promise<void>;
+  isEditable: boolean;
 }
 
 const MaterialCard: React.FC<MaterialProps> = ({
@@ -27,30 +27,30 @@ const MaterialCard: React.FC<MaterialProps> = ({
   isEditable
 }) => {
   // Inițializează starea cu valorile din material
-  const [name, setName] = useState(material.name)
-  const [price, setPrice] = useState(material.price)
-  const [description, setDescription] = useState(material.description)
-  const [category, setCategory] = useState(material.category)
-  const [available, setAvailable] = useState(material.available)
+  const [name, setName] = useState(material.name);
+  const [price, setPrice] = useState(material.price);
+  const [description, setDescription] = useState(material.description);
+  const [category, setCategory] = useState(material.category);
+  const [available, setAvailable] = useState(material.available);
 
   // Funcția pentru a gestiona schimbarea numelui
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value)
-  }
+    setName(event.target.value);
+  };
 
   // Funcția pentru a gestiona schimbarea prețului
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(Number(event.target.value)) // Convertește în număr
-  }
+    setPrice(Number(event.target.value)); // Convertește în număr
+  };
 
   const handleDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setDescription(event.target.value) // Convertește în număr
-  }
+    setDescription(event.target.value); // Convertește în număr
+  };
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(event.target.value) // Convertește în număr
-  }
+    setCategory(event.target.value); // Convertește în număr
+  };
 
   const handleEdit = async () => {
     const { message } = await updateMaterial(
@@ -61,21 +61,21 @@ const MaterialCard: React.FC<MaterialProps> = ({
       description,
       category,
       available
-    )
+    );
 
-    alert(message)
-  }
+    alert(message);
+  };
   const handleDelete = async () => {
-    const { message } = await deleteMaterial(material.id)
+    const { message } = await deleteMaterial(material.id);
 
-    alert(message)
-    await onDelete()
-  }
+    alert(message);
+    await onDelete();
+  };
 
   return (
     <Card
-      className={`border border-black rounded-md ${!material.available && 'bg-red-500'}`}
-      shadow="sm"
+      className={`border border-white rounded-md bg-blue-950 ${!material.available && "bg-red-500"} `}
+      shadow="lg"
     >
       <CardBody className="overflow-visible p-0 flex justify-center ">
         <div className="flex justify-center w-full mt-2">
@@ -142,7 +142,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
         </CardFooter>
       )}
     </Card>
-  )
-}
+  );
+};
 
-export default MaterialCard
+export default MaterialCard;

@@ -1,13 +1,13 @@
 // /components/MaterialList.tsx
-import React from 'react'
-import MaterialCard from '@app/ui/materials/MaterialCard'
+import React from "react";
+import MaterialCard from "@app/ui/materials/MaterialCard";
 
-import { Material } from '../lib/definitions'
+import { Material } from "../lib/definitions";
 
 interface MaterialListProps {
-  materials: Material[]
-  loadMaterials: () => Promise<void>
-  isEditable: boolean
+  materials: Material[];
+  loadMaterials: () => Promise<void>;
+  isEditable: boolean;
 }
 
 const MaterialList: React.FC<MaterialListProps> = ({
@@ -26,7 +26,7 @@ const MaterialList: React.FC<MaterialListProps> = ({
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default MaterialList
+export default MaterialList;

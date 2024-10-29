@@ -1,46 +1,46 @@
-'use client'
+"use client";
 
-import { Suspense, useEffect, useState } from 'react'
-import { fetchMaterials } from '@app/lib/data'
-import { Slider } from '@nextui-org/react'
-import { useDebounce } from 'use-debounce'
-import PaginationComponent from '@app/ui/materials/pagination'
-import { useSearchParams } from 'next/navigation'
+import { Suspense, useEffect, useState } from "react";
+import { fetchMaterials } from "@app/lib/data";
+import { Slider } from "@nextui-org/react";
+import { useDebounce } from "use-debounce";
+import PaginationComponent from "@app/ui/materials/pagination";
+import { useSearchParams } from "next/navigation";
 
-import { Material } from '../lib/definitions'
-import MaterialList from '../components/MaterialsList'
-import { InvoicesTableSkeleton } from '../ui/skeletons'
+import { Material } from "../lib/definitions";
+import MaterialList from "../components/MaterialsList";
+import { InvoicesTableSkeleton } from "../ui/skeletons";
 
 export default function Page() {
-  const [materials, setMaterials] = useState<Material[]>([]) // Starea pentru lista de materiale
-  const [value, setValue] = useState([0, 300])
-  const [debouncedValue] = useDebounce(value, 500)
-  const [numberOfItems, setNumberOfItems] = useState(0)
-  const [page, setPage] = useState(1)
-  const [numberOfPages, setNumberOfPages] = useState(1)
-  const searchParams = useSearchParams()
+  const [materials, setMaterials] = useState<Material[]>([]); // Starea pentru lista de materiale
+  const [value, setValue] = useState([0, 300]);
+  const [debouncedValue] = useDebounce(value, 500);
+  const [numberOfItems, setNumberOfItems] = useState(0);
+  const [page, setPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState(1);
+  const searchParams = useSearchParams();
 
-  const search = searchParams.get('page')
+  const search = searchParams.get("page");
 
-  console.log(search)
+  console.log(search);
 
   const loadMaterials = async () => {
     const { materialsData, totalPages } = await fetchMaterials(
       page,
       debouncedValue[0],
       debouncedValue[1]
-    )
+    );
 
     // let pages = await fetchMaterialsPages();
-    setNumberOfPages(totalPages)
+    setNumberOfPages(totalPages);
 
-    setMaterials(materialsData)
-    setNumberOfItems(materialsData.length)
-  }
+    setMaterials(materialsData);
+    setNumberOfItems(materialsData.length);
+  };
 
   useEffect(() => {
-    loadMaterials()
-  }, [debouncedValue, page])
+    loadMaterials();
+  }, [debouncedValue, page]);
 
   return (
     <div className="flex p-3 justify-between h-screen">
@@ -68,7 +68,7 @@ export default function Page() {
         <>
           <Slider
             className="max-w-md"
-            formatOptions={{ style: 'currency', currency: 'LEI' }}
+            formatOptions={{ style: "currency", currency: "LEI" }}
             label="Interval pret"
             maxValue={300}
             minValue={0}
@@ -77,9 +77,10 @@ export default function Page() {
             onChange={(value: number | number[]) =>
               setValue(Array.isArray(value) ? value : [value])
             }
+            color={"primary"}
           />
         </>
       </div>
     </div>
-  )
+  );
 }
