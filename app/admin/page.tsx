@@ -1,18 +1,17 @@
 'use client'
 import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { signIn, signOut } from '@app/lib/firebase'
-import { User } from '@firebase/auth'
+import { auth, signIn, signOut } from '@app/lib/firebase'
+import { onAuthStateChanged, User } from '@firebase/auth'
 import { Material } from '@app/lib/definitions'
 import { useDebounce } from 'use-debounce'
 import { fetchMaterials } from '@app/lib/data'
-import PaginationComponent from '@app/ui/meterials/pagination'
+import PaginationComponent from '@app/ui/materials/pagination'
 import { InvoicesTableSkeleton } from '@app/ui/skeletons'
 import MaterialList from '@app/components/MaterialsList'
-import { Slider } from '@nextui-org/react'
+import { Button, Slider } from '@nextui-org/react'
 import ModalComponent from '@app/components/Modal'
-import { onAuthStateChanged } from '@firebase/auth'
-import { auth } from '@app/lib/firebase'
+import AcmeLogo from '@app/ui/creativ-logo'
 
 const AdminPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false)
@@ -66,24 +65,24 @@ const AdminPage = () => {
     return () => unsubscribe() // Cleanup
   }, [debouncedValue, page]) // Execută o singură dată la montare
 
-  if (!isAuthorized) return <button onClick={handleLogin}>Login</button>
+  if (!isAuthorized)
+    return (
+      <div
+        className={
+          'w-full h-screen bg-blue-950 flex flex-col justify-center items-center gap-2'
+        }
+      >
+        <AcmeLogo />
+        <Button color={'primary'} size={'lg'} onClick={handleLogin}>
+          Login
+        </Button>
+      </div>
+    )
 
   return (
     <div>
-      Welcome to the Admin Page,{user?.displayName}
-      <button onClick={signOut}>Signout</button>
-      <div className="flex p-3 justify-between">
-        <div className="w-4/5">
-          <div className="w-full flex justify-center">
-            <PaginationComponent
-              numberOfPages={numberOfPages}
-              page={page}
-              setPage={setPage}
-            />
-          </div>
-          {/* <Suspense fallback={null}>
-          <NavigationEvents />
-        </Suspense> */}
+      <div className="flex p-3 justify-between h-screen">
+        <div className="w-4/5 overflow-y-auto h-full pr-3">
           <Suspense fallback={<InvoicesTableSkeleton />}>
             <MaterialList
               isEditable={true}
@@ -95,7 +94,19 @@ const AdminPage = () => {
             <h1>Nu exista produse in acel interval de pret</h1>
           )}
         </div>
-        <div className="w-1/5 flex  flex-col gap-2 right-0 border-l-4 p-3">
+        <div className="w-1/5 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
+          <h1 className={'text-center'}>
+            Welcome Admin <br />
+            {user?.displayName}
+          </h1>
+
+          <div className="w-full flex justify-center">
+            <PaginationComponent
+              numberOfPages={numberOfPages}
+              page={page}
+              setPage={setPage}
+            />
+          </div>
           <h1>Selecteaza filtre:</h1>
           <>
             <Slider
@@ -113,6 +124,9 @@ const AdminPage = () => {
           </>
 
           <ModalComponent onSubmit={loadMaterials} />
+          <Button color={'danger'} onClick={signOut}>
+            Delogare
+          </Button>
         </div>
       </div>
     </div>

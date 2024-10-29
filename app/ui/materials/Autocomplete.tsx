@@ -24,7 +24,7 @@ const AutocompleteComponent: React.FC<AutocompleteProps> = ({
         allowsCustomValue={false}
         className="max-w-xs"
         defaultItems={categories}
-        label="Search an animal"
+        label="Alegeti o categorie"
         variant="bordered"
         onInputChange={onInputChange}
       >

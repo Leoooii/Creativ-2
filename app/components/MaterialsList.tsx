@@ -1,31 +1,32 @@
 // /components/MaterialList.tsx
-import React from "react";
+import React from 'react'
+import MaterialCard from '@app/ui/materials/MaterialCard'
 
-import { Material } from "../lib/definitions";
-import MaterialCard from "../ui/meterials/MaterialCard";
+import { Material } from '../lib/definitions'
 
 interface MaterialListProps {
-  materials: Material[];
-  loadMaterials: () => Promise<void>;
-  isEditable: boolean;
+  materials: Material[]
+  loadMaterials: () => Promise<void>
+  isEditable: boolean
 }
 
 const MaterialList: React.FC<MaterialListProps> = ({
   materials,
-  loadMaterials,isEditable
+  loadMaterials,
+  isEditable
 }) => {
   return (
     <div className="grid grid-cols-3 gap-3 px-10 ">
       {materials.map(material => (
         <MaterialCard
           key={material.id} // Folosește id-ul pentru a evita generarea de chei duplicate
+          isEditable={isEditable}
           material={material}
           onDelete={loadMaterials} // Transmite funcția de reîncărcare
-          isEditable={isEditable}
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default MaterialList;
+export default MaterialList

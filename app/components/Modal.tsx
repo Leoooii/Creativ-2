@@ -1,34 +1,32 @@
-"use client";
+'use client'
 
 import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   useDisclosure
-} from "@nextui-org/react";
-import AddItemForm from "../ui/meterials/AddItemForm";
-import { useState } from "react";
+} from '@nextui-org/react'
+import AddItemForm from '@app/ui/materials/AddItemForm'
 import React from 'react'
 
 interface ModalProps {
-  onSubmit: () => Promise<void>;
+  onSubmit: () => Promise<void>
 }
 
 const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
   return (
     <>
-      <Button onPress={onOpen} color="primary">
+      <Button color="primary" onPress={onOpen}>
         Adauga produs
       </Button>
       <Modal
         backdrop="opaque"
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
         motionProps={{
           variants: {
             enter: {
@@ -36,7 +34,7 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
               opacity: 1,
               transition: {
                 duration: 0.6,
-                ease: "circOut"
+                ease: 'circOut'
               }
             },
             exit: {
@@ -44,11 +42,12 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
               opacity: 0,
               transition: {
                 duration: 0.2,
-                ease: "easeIn"
+                ease: 'easeIn'
               }
             }
           }
         }}
+        onOpenChange={onOpenChange}
       >
         <ModalContent>
           {onClose => (
@@ -60,7 +59,7 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
                 <AddItemForm onSubmit={onSubmit} />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button color="danger" variant="flat" onPress={onClose}>
                   Inchide
                 </Button>
               </ModalFooter>
@@ -69,7 +68,7 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default ModalComponent;
+export default ModalComponent

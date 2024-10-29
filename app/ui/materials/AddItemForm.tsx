@@ -52,7 +52,7 @@ const AddItemForm: React.FC<AddItemProps> = ({ onSubmit }) => {
     alert(message)
   }
 
-  const handleCategory = (category: string) => {
+  const handleCategory = async (category: string): Promise<void> => {
     setCategory(category)
   }
 
