@@ -9,6 +9,7 @@ import SideNav from "./ui/dashboard/sidenav";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/app/components/navbar";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Creativ Tub",

@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from '@heroicons/react/16/solid';
+import { CheckCircleIcon } from '@heroicons/react/16/solid'
 import { inter } from '@app/ui/fonts';
 
 const list = [

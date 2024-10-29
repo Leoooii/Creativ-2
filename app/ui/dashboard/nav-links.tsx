@@ -14,7 +14,7 @@ const links = [
     href: '/materials',
     icon: DocumentDuplicateIcon,
   },
-  { name: 'Customers', href: '/add', icon: UserGroupIcon },
+  { name: 'Customers', href: '/admin', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {

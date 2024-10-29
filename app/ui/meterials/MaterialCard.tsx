@@ -19,9 +19,10 @@ import {
 interface MaterialProps {
   material: Material;
   onDelete: () => Promise<void>;
+  isEditable:boolean;
 }
 
-const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
+const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete,isEditable }) => {
   // Inițializează starea cu valorile din material
   const [name, setName] = useState(material.name);
   const [price, setPrice] = useState(material.price);
@@ -86,13 +87,13 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
       <Divider />
       <CardFooter className="text-small justify-between flex-col gap-2">
         <Input
-          isClearable
-          onClear={() => setName("")}
+
           type="text"
           value={name}
           onChange={handleNameChange}
           label="Nume"
           isRequired={true}
+          readOnly={!isEditable}
         />
 
         <Input
@@ -100,6 +101,7 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
           type="number"
           value={String(price)}
           onChange={handlePriceChange}
+          readOnly={!isEditable}
         />
 
         <Textarea
@@ -107,10 +109,11 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
           value={description}
           onChange={handleDescriptionChange}
           minRows={1}
-          maxRows={3}
+          maxRows={!isEditable ? 7 : 3}
+          readOnly={!isEditable}
         />
       </CardFooter>
-      <CardFooter className="text-small justify-between">
+      {isEditable &&  <CardFooter className="text-small justify-between">
         <Button
           className="text-white px-3 py-1 rounded-lg  hover:border hover:border-cyan-400"
           onClick={handleEdit}
@@ -130,7 +133,7 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
         >
           Sterge
         </Button>
-      </CardFooter>
+      </CardFooter>}
     </Card>
   );
 };

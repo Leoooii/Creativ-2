@@ -55,11 +55,9 @@ export default function Page() {
             setPage={setPage}
           />
         </div>
-        {/* <Suspense fallback={null}>
-          <NavigationEvents />
-        </Suspense> */}
+
         <Suspense fallback={<InvoicesTableSkeleton />}>
-          <MaterialList materials={materials} loadMaterials={loadMaterials} />
+          <MaterialList isEditable={false} materials={materials} loadMaterials={loadMaterials} />
         </Suspense>
         {numberOfItems === 0 && (
           <h1>Nu exista produse in acel interval de pret</h1>
@@ -82,7 +80,7 @@ export default function Page() {
           />
         </>
 
-        <ModalComponent onSubmit={loadMaterials} />
+
       </div>
     </div>
   );

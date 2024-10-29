@@ -5,26 +5,25 @@ import {
   NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem,
-} from '@nextui-org/navbar';
-import { Button } from '@nextui-org/button';
-import { Kbd } from '@nextui-org/kbd';
-import { Link } from '@nextui-org/link';
-import { Input } from '@nextui-org/input';
-import { link as linkStyles } from '@nextui-org/theme';
-import NextLink from 'next/link';
-import clsx from 'clsx';
+  NavbarMenuItem
+} from '@nextui-org/navbar'
+import { Button } from '@nextui-org/button'
+import { Kbd } from '@nextui-org/kbd'
+import { Link } from '@nextui-org/link'
+import { Input } from '@nextui-org/input'
+import { link as linkStyles } from '@nextui-org/theme'
+import NextLink from 'next/link'
+import clsx from 'clsx'
 
-import { siteConfig } from '@/config/site';
-import { ThemeSwitch } from '@/app/components/theme-switch';
+import { siteConfig } from '@/config/site'
 import {
   TwitterIcon,
   GithubIcon,
   DiscordIcon,
   HeartFilledIcon,
   SearchIcon,
-  Logo,
-} from '@/app/components/icons';
+  Logo
+} from '@/app/components/icons'
 
 export const Navbar = () => {
   const searchInput = (
@@ -32,7 +31,7 @@ export const Navbar = () => {
       aria-label="Search"
       classNames={{
         inputWrapper: 'bg-default-100',
-        input: 'text-sm',
+        input: 'text-sm'
       }}
       endContent={
         <Kbd className="hidden lg:inline-block" keys={['command']}>
@@ -46,7 +45,7 @@ export const Navbar = () => {
       }
       type="search"
     />
-  );
+  )
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -89,7 +88,6 @@ export const Navbar = () => {
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
             <GithubIcon className="text-default-500" />
           </Link>
-          <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <NavbarItem className="hidden md:flex">
@@ -110,7 +108,7 @@ export const Navbar = () => {
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-default-500" />
         </Link>
-        <ThemeSwitch />
+
         <NavbarMenuToggle />
       </NavbarContent>
 
@@ -137,5 +135,5 @@ export const Navbar = () => {
         </div>
       </NavbarMenu>
     </NextUINavbar>
-  );
-};
+  )
+}

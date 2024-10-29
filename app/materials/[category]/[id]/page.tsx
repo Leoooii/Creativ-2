@@ -3,7 +3,7 @@
 // import { Metalurgice } from '../../../../public/data/DummyData';
 // import Image from 'next/image';
 
-const DetailPage = ({}) => {
+const DetailPage = () => {
   // const { category, id } = params; // Obține categoria și id-ul din parametrii URL
   // console.log();
   // const subcategorieGasita = Metalurgice.find((subcategorie) => subcategorie.label === category.replace(/%20/g, ' '));

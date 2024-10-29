@@ -1,7 +1,7 @@
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Image from 'next/image';
-import constructi from '../../public/images/constructii.jpg';
+import constructi from '../../public/images/constructii.jpg'
 import electrice from '../../public/images/Electrice.jpg';
 import gradina from '../../public/images/Gradina.jpg';
 import metalurgice from '../../public/images/metalurgice.jpg';

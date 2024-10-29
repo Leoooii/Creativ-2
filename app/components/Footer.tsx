@@ -16,12 +16,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="https://anpc.ro/" className="text-gray-400 hover:text-white">
                   Termeni și Condiții
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="https://anpc.ro/" className="text-gray-400 hover:text-white">
                   Politica de confidentialitate
                 </a>
               </li>
@@ -46,7 +46,7 @@ const Footer = () => {
               <li className="flex">
                 <h3 className="text-gray-400 ">Telefon: </h3>
                 <h3 className="text-gray-400 hover:text-white">
-                  {" "}
+
                   0751-839-308
                 </h3>
               </li>
@@ -58,20 +58,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* <div className="w-full md:w-1/4 mb-6">
-            <h2 className="text-lg font-bold mb-2">Sediu</h2>
-            <div className="">
-              <a
-                href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x40adff8363bae4c5:0x9d630f984af38ef5?sa=X&ved=1t:8290&ictx=111"
-                className="text-gray-400 hover:text-white"
-              >
-                Str. Bucuresti nr. 216, Varteju, Jud. Ilfov
-              </a>
-
-              <h3 className="text-gray-400 ">(pe Centura Bucuresti)</h3>
-            </div>
-          </div> */}
         </div>
 
         <div className="border-t border-gray-700 mt-6 pt-4 text-center">

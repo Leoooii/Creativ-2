@@ -1,41 +1,43 @@
-"use client";
+'use client'
 
-import { addMaterial } from "@app/lib/data";
-import { useState, useEffect } from "react";
-import { Input, Switch, Button, Image } from "@nextui-org/react";
-import { fetchCategories } from "@app/lib/data";
-import { Category } from "@/app/lib/definitions";
-import AutocompleteComponent from "./Autocomplete";
+import { addMaterial, fetchCategories } from '@app/lib/data'
+import React, { useEffect, useState } from 'react'
+import { Button, Image, Input, Switch } from '@nextui-org/react'
+
+import AutocompleteComponent from './Autocomplete'
+
+import { Category } from '@/app/lib/definitions'
 
 interface AddItemProps {
-  onSubmit: () => Promise<void>;
+  onSubmit: () => Promise<void>
 }
 
 const defaultImg =
-  "https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/upload-bold-arrow-icon.png";
+  'https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/upload-bold-arrow-icon.png'
 
 const AddItemForm: React.FC<AddItemProps> = ({ onSubmit }) => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("1");
-  const [imageURL, setImageURL] = useState("");
-  const [description, setDescription] = useState("");
-  const [available, setAvailable] = useState(true);
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('1')
+  const [imageURL, setImageURL] = useState('')
+  const [description, setDescription] = useState('')
+  const [available, setAvailable] = useState(true)
 
-  const [category, setCategory] = useState("Constructii");
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [category, setCategory] = useState('Constructii')
+  const [categories, setCategories] = useState<Category[]>([])
 
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const fetchedCategories = await fetchCategories(); // Fetch categories din backend
-        setCategories(fetchedCategories); // Setează categoriile
-      } catch (error) {
-        console.error("Failed to fetch categories", error);
-      }
-    };
+        const fetchedCategories = await fetchCategories() // Fetch categories din backend
 
-    loadCategories();
-  }, []);
+        setCategories(fetchedCategories) // Setează categoriile
+      } catch (error) {
+        console.error('Failed to fetch categories', error)
+      }
+    }
+
+    loadCategories()
+  }, [])
 
   const handleSubmit = async () => {
     const { message } = await addMaterial(
@@ -45,58 +47,58 @@ const AddItemForm: React.FC<AddItemProps> = ({ onSubmit }) => {
       description,
       available,
       category
-    );
-    alert(message);
-  };
+    )
+
+    alert(message)
+  }
 
   const handleCategory = (category: string) => {
-    // Logica ta pentru a seta categoria, de exemplu, apelând o API
-    setCategory(category);
-  };
+    setCategory(category)
+  }
 
   return (
     <form
-      onSubmit={handleSubmit}
       className="flex flex-col p-5 bg-white gap-2 justify-center"
+      onSubmit={handleSubmit}
     >
       <Input
-        size="md"
-        label="Nume produs"
         required
+        label="Nume produs"
         placeholder="Introduceti numele produsului"
+        size="md"
         value={name}
         onChange={e => setName(e.target.value)}
       />
 
       <Input
-        placeholder="Introduceti pretul"
-        label="Pret"
         required
+        label="Pret"
+        placeholder="Introduceti pretul"
         type="number"
         value={price}
         onChange={e => setPrice(e.target.value)}
       />
       <Input
+        required
         label="URL imagine"
         placeholder="URL imagine"
-        required
         value={imageURL}
         onChange={e => setImageURL(e.target.value)}
       />
 
       <div className="flex justify-center">
         <Image
-          src={imageURL || defaultImg}
           alt="preview"
-          width={100}
           height={100}
+          src={imageURL || defaultImg}
+          width={100}
         />
       </div>
 
       <Input
+        required
         label="Descrierea produsului"
         placeholder="Introduceti descrierea produsului"
-        required
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
@@ -110,11 +112,11 @@ const AddItemForm: React.FC<AddItemProps> = ({ onSubmit }) => {
         In stoc
       </Switch>
 
-      <Button type="submit" color="primary">
+      <Button color="primary" type="submit">
         Adauga
       </Button>
     </form>
-  );
-};
+  )
+}
 
-export default AddItemForm;
+export default AddItemForm

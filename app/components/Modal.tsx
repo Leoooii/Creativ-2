@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import AddItemForm from "../ui/meterials/AddItemForm";
 import { useState } from "react";
+import React from 'react'
 
 interface ModalProps {
   onSubmit: () => Promise<void>;
