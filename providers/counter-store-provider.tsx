@@ -2,7 +2,10 @@
 import { createContext, type ReactNode, useContext, useRef } from 'react'
 import { useStore } from 'zustand'
 
-import { type CounterStore, createCounterStore } from '../stores/counter-store'
+import {
+  type CounterStore,
+  createCounterStore
+} from '@/providers/counter-store'
 
 export type CounterStoreApi = ReturnType<typeof createCounterStore>
 

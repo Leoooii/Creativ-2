@@ -1,8 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Material } from '@app/lib/definitions'
-import { deleteMaterial, updateMaterial } from '@app/lib/data'
 import {
   Button,
   Card,
@@ -15,6 +13,9 @@ import {
 } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@nextui-org/link'
+
+import { deleteMaterial, updateMaterial } from '@/lib/data'
+import { Material } from '@/lib/definitions'
 
 interface MaterialProps {
   material: Material

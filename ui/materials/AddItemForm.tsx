@@ -1,12 +1,12 @@
 'use client'
 
-import { addMaterial, fetchCategories } from '@app/lib/data'
 import React, { useEffect, useState } from 'react'
 import { Button, Image, Input, Switch } from '@nextui-org/react'
 
 import AutocompleteComponent from './Autocomplete'
 
-import { Category } from '@/app/lib/definitions'
+import { addMaterial, fetchCategories } from '@/lib/data'
+import { Category } from '@/lib/definitions'
 
 interface AddItemProps {
   onSubmit: () => Promise<void>

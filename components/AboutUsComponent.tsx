@@ -1,5 +1,4 @@
-import { CheckCircleIcon } from "@heroicons/react/16/solid";
-import { inter } from "@app/ui/fonts";
+import { CheckCircleIcon } from '@heroicons/react/16/solid'
 
 const list = [
   {
@@ -8,11 +7,11 @@ const list = [
   },
   {
     description:
-      "Prin deviza noastra “BADUC …. si casa e gata” dorim sa va facem cunoscut faptul ca noi suntem acel “furnizor unic” pe care il cautati pentru a economisi timp si bani, achizitionand materiale necesare din aceeasi surs."
+      'Prin deviza noastra “BADUC …. si casa e gata” dorim sa va facem cunoscut faptul ca noi suntem acel “furnizor unic” pe care il cautati pentru a economisi timp si bani, achizitionand materiale necesare din aceeasi surs.'
   },
   {
     description:
-      "Experienta, profesionalismul si seriozitatea ne caracterizeaza activitatea de peste patru decenii."
+      'Experienta, profesionalismul si seriozitatea ne caracterizeaza activitatea de peste patru decenii.'
   }
   // {
   //   description:
@@ -25,11 +24,11 @@ const list = [
   // {
   //   description: 'Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp.',
   // },
-];
+]
 
 export default function AboutUs() {
   return (
-    <div className={`${inter.className} grid grid-cols-3  gap-10`}>
+    <div className={` grid grid-cols-3  gap-10`}>
       {list.map(item => {
         return (
           <div
@@ -42,8 +41,8 @@ export default function AboutUs() {
 
             <h1 className="flex-1">{item.description}</h1>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }

@@ -1,18 +1,19 @@
 'use client'
 import React, { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { auth, signIn, signOut } from '@app/lib/firebase'
 import { onAuthStateChanged, User } from '@firebase/auth'
-import { Category, Material } from '@app/lib/definitions'
 import { useDebounce } from 'use-debounce'
-import { fetchCategories, fetchMaterials } from '@app/lib/data'
-import PaginationComponent from '@app/ui/materials/pagination'
-import { InvoicesTableSkeleton } from '@app/ui/skeletons'
-import MaterialList from '@app/components/MaterialsList'
+import PaginationComponent from '@ui/materials/pagination'
+import { InvoicesTableSkeleton } from '@ui/skeletons'
 import { Button, Slider } from '@nextui-org/react'
-import ModalComponent from '@app/components/Modal'
-import AcmeLogo from '@app/ui/creativ-logo'
-import AutocompleteComponent from '@app/ui/materials/Autocomplete'
+import AcmeLogo from '@ui/creativ-logo'
+import AutocompleteComponent from '@ui/materials/Autocomplete'
+
+import ModalComponent from '@/components/Modal'
+import MaterialList from '@/components/MaterialsList'
+import { fetchCategories, fetchMaterials } from '@/lib/data'
+import { Category, Material } from '@/lib/definitions'
+import { auth, signIn, signOut } from '@/lib/firebase'
 
 const AdminPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false)

@@ -1,14 +1,23 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/react';
-import { Metalurgice, Constructii, Electrice, Sanitare, Unelte, Gradina } from '../../public/data/DummyData';
-import { DropdownComponent } from './DropdownComponent';
+import React from 'react'
+import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/react'
+
+import {
+  Constructii,
+  Electrice,
+  Gradina,
+  Metalurgice,
+  Sanitare,
+  Unelte
+} from '../public/data/DummyData'
+
+import { DropdownComponent } from './DropdownComponent'
 // import { SearchComponent } from './SearchComponent';
 
 const Header = () => {
   return (
-    <Navbar shouldHideOnScroll className="p-2" isBordered>
+    <Navbar isBordered shouldHideOnScroll className="p-2">
       <NavbarContent className="hidden sm:flex gap-4 " justify="center">
         <NavbarItem>
           <DropdownComponent array={Gradina} name="Gradina" />
@@ -35,7 +44,7 @@ const Header = () => {
         </NavbarItem>
       </NavbarContent> */}
     </Navbar>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

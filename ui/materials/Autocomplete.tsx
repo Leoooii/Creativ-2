@@ -1,7 +1,7 @@
 import React from 'react'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/react'
 
-import { Category } from '@/app/lib/definitions'
+import { Category } from '@/lib/definitions'
 
 interface AutocompleteProps {
   categories: Category[]

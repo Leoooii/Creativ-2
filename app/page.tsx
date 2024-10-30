@@ -2,19 +2,13 @@
 
 import Image from 'next/image'
 
-import ResponsiveCarousel from './components/CarouselComponent'
-import Footer from './components/Footer'
-import AboutUs from './components/AboutUsComponent'
+import ResponsiveCarousel from '@/components/CarouselComponent'
+import Footer from '@/components/Footer'
+import AboutUs from '@/components/AboutUsComponent'
 
 export default function Home() {
   return (
     <div className="container mx-auto p-4 h-full flex flex-col gap-10 ">
-      <button type="button" onClick={() => void incrementCount()}>
-        Increment Count
-      </button>
-      <button type="button" onClick={() => void decrementCount()}>
-        Decrement Count
-      </button>
       <ResponsiveCarousel />
       <AboutUs />
 

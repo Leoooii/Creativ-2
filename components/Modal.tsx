@@ -9,7 +9,7 @@ import {
   ModalHeader,
   useDisclosure
 } from '@nextui-org/react'
-import AddItemForm from '@app/ui/materials/AddItemForm'
+import AddItemForm from '@ui/materials/AddItemForm'
 import React from 'react'
 
 interface ModalProps {

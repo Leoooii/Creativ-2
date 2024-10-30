@@ -1,4 +1,4 @@
-import Header from '@app/components/Header';
+import Header from '@/components/Header'
 
 export default function Navbar() {
   return (
@@ -6,5 +6,5 @@ export default function Navbar() {
       <Header />
       <hr />
     </div>
-  );
+  )
 }

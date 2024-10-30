@@ -4,7 +4,7 @@
 import { createContext, type ReactNode, useContext, useRef } from 'react'
 import { useStore } from 'zustand'
 
-import { type AuthStore, createAuthStore } from '../stores/auth-store'
+import { type AuthStore, createAuthStore } from '@/providers/auth-store'
 
 export type AuthStoreApi = ReturnType<typeof createAuthStore>
 

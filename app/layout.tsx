@@ -2,13 +2,12 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 import React from 'react'
-import { CounterStoreProvider } from '@app/providers/counter-store-provider'
-import { AuthStoreProvider } from '@app/providers/auth-store-provider'
 
 import { Providers } from './providers'
-import SideNav from './ui/dashboard/sidenav'
 
-import { fontSans } from '@/config/fonts'
+import SideNav from '@/ui/dashboard/sidenav'
+import { CounterStoreProvider } from '@/providers/counter-store-provider'
+import { AuthStoreProvider } from '@/providers/auth-store-provider'
 
 export const metadata: Metadata = {
   title: 'Creativ Tub',
@@ -33,8 +32,8 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
+          'min-h-screen bg-background font-sans antialiased'
+          // fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>

@@ -7,7 +7,7 @@ import {
   User
 } from 'firebase/auth'
 
-import { auth } from '../lib/firebase' // presupunând că ai un fișier firebase.ts care exportă `auth`
+import { auth } from '@/lib/firebase' // presupunând că ai un fișier firebase.ts care exportă `auth`
 
 export type AuthState = {
   user: User | null
