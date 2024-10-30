@@ -1,20 +1,21 @@
 'use client'
+
 import React, { Suspense, useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { auth, signIn, signOut } from '@app/lib/firebase'
 import { onAuthStateChanged, User } from '@firebase/auth'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Category, Material } from '@app/lib/definitions'
 import { useDebounce } from 'use-debounce'
 import { fetchCategories, fetchMaterials } from '@app/lib/data'
-import PaginationComponent from '@app/ui/materials/pagination'
+import { auth, signIn, signOut } from '@app/lib/firebase'
+import AcmeLogo from '@app/ui/creativ-logo'
+import { Button, Slider } from '@nextui-org/react'
 import { InvoicesTableSkeleton } from '@app/ui/skeletons'
 import MaterialList from '@app/components/MaterialsList'
-import { Button, Slider } from '@nextui-org/react'
-import ModalComponent from '@app/components/Modal'
-import AcmeLogo from '@app/ui/creativ-logo'
+import PaginationComponent from '@app/ui/materials/pagination'
 import AutocompleteComponent from '@app/ui/materials/Autocomplete'
+import ModalComponent from '@app/components/Modal'
 
-const AdminPage = () => {
+const CategoryPage = ({ filteredCategory }: { filteredCategory: string }) => {
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [user, setUser] = useState<User | null>(null)
   const router = useRouter()
@@ -26,13 +27,14 @@ const AdminPage = () => {
   const [numberOfPages, setNumberOfPages] = useState(1)
   const searchParams = useSearchParams()
   const [categories, setCategories] = useState<Category[]>([])
-  const [category, setCategory] = useState('Constructii')
+  const [category, setCategory] = useState(filteredCategory)
 
   const loadMaterials = async () => {
     const { materialsData, totalPages } = await fetchMaterials(
       page,
       debouncedValue[0],
-      debouncedValue[1]
+      debouncedValue[1],
+      filteredCategory
     )
 
     setNumberOfPages(totalPages)
@@ -102,7 +104,7 @@ const AdminPage = () => {
   return (
     <div>
       <div className="flex p-3 justify-between h-screen">
-        <div className="w-4/5 overflow-y-auto h-full ">
+        <div className="w-4/5 overflow-y-auto h-full pr-3">
           <Suspense fallback={<InvoicesTableSkeleton />}>
             <MaterialList
               isEditable={true}
@@ -114,7 +116,7 @@ const AdminPage = () => {
             <h1>Nu exista produse in acel interval de pret</h1>
           )}
         </div>
-        <div className="w-1/4 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
+        <div className="w-1/5 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
           <h1 className={'text-center'}>
             Welcome Admin <br />
             {user?.displayName}
@@ -144,7 +146,7 @@ const AdminPage = () => {
           </>
           <AutocompleteComponent
             categories={categories}
-            defaultValue={''}
+            defaultValue={filteredCategory}
             setCategory={handleCategory}
           />
 
@@ -158,4 +160,4 @@ const AdminPage = () => {
   )
 }
 
-export default AdminPage
+export default CategoryPage

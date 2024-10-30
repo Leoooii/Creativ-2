@@ -6,11 +6,13 @@ import { Category } from '@/app/lib/definitions'
 interface AutocompleteProps {
   categories: Category[]
   setCategory: (category: string) => Promise<void>
+  defaultValue: string
 }
 
 const AutocompleteComponent: React.FC<AutocompleteProps> = ({
   categories,
-  setCategory
+  setCategory,
+  defaultValue
 }) => {
   const [value, setValue] = React.useState('')
 
@@ -20,11 +22,14 @@ const AutocompleteComponent: React.FC<AutocompleteProps> = ({
 
   return (
     <div className="flex w-full flex-col">
+      <h1>{defaultValue}</h1>
       <Autocomplete
         allowsCustomValue={false}
         className="max-w-xs"
         defaultItems={categories}
-        label="Alegeti o categorie"
+        label={
+          defaultValue ? defaultValue.toUpperCase() : 'Alegeti o categorie'
+        }
         variant="bordered"
         onInputChange={onInputChange}
       >
