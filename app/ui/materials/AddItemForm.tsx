@@ -104,6 +104,7 @@ const AddItemForm: React.FC<AddItemProps> = ({ onSubmit }) => {
       />
       <AutocompleteComponent
         categories={categories}
+        defaultValue={''}
         setCategory={handleCategory}
       />
       {category}

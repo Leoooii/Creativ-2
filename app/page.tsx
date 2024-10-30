@@ -1,24 +1,30 @@
-"use client";
+'use client'
 
-import Image from "next/image";
+import Image from 'next/image'
 
-import ResponsiveCarousel from "./components/CarouselComponent";
-import Footer from "./components/Footer";
-import AboutUs from "./components/AboutUsComponent";
+import ResponsiveCarousel from './components/CarouselComponent'
+import Footer from './components/Footer'
+import AboutUs from './components/AboutUsComponent'
 
 export default function Home() {
   return (
     <div className="container mx-auto p-4 h-full flex flex-col gap-10 ">
+      <button type="button" onClick={() => void incrementCount()}>
+        Increment Count
+      </button>
+      <button type="button" onClick={() => void decrementCount()}>
+        Decrement Count
+      </button>
       <ResponsiveCarousel />
       <AboutUs />
 
       <div className="flex justify-center">
         <Image
-          src={"/images/work.jpg"}
-          height={3072}
-          width={4608}
           alt="worker"
           className=" rounded-xl w-1/2"
+          height={3072}
+          src={'/images/work.jpg'}
+          width={4608}
         />
 
         {/*<Image*/}
@@ -34,7 +40,7 @@ export default function Home() {
           <h1 className="font-bold font-sans mb-3">PROGRAM DE LUCRU</h1>
           <hr />
           <div className="flex flex-col justify-center  p-6 gap-2">
-            {" "}
+            {' '}
             <div className="flex">
               <h1 className=" font-semibold">Luni-Vineri:</h1>
               <h1 className="text-green-500 ml-1"> 8:00-16:00</h1>
@@ -63,5 +69,5 @@ export default function Home() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }

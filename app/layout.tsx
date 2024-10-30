@@ -2,6 +2,8 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 import React from 'react'
+import { CounterStoreProvider } from '@app/providers/counter-store-provider'
+import { AuthStoreProvider } from '@app/providers/auth-store-provider'
 
 import { Providers } from './providers'
 import SideNav from './ui/dashboard/sidenav'
@@ -36,14 +38,18 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
-          <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-            <div className="w-full flex-none md:w-72">
-              <SideNav />
+          <AuthStoreProvider>
+            <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+              <div className="w-full flex-none md:w-72">
+                <SideNav />
+              </div>
+              <div className="flex-grow  md:overflow-y-auto ">
+                <CounterStoreProvider>
+                  <Providers>{children}</Providers>
+                </CounterStoreProvider>
+              </div>
             </div>
-            <div className="flex-grow  md:overflow-y-auto ">
-              <Providers>{children}</Providers>
-            </div>
-          </div>
+          </AuthStoreProvider>
         </Providers>
       </body>
     </html>
