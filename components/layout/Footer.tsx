@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-950 text-white py-8 bottom-0  w-full">
+    <footer className="bg-blue-950 text-white py-8 bottom-0  w-full rounded-lg">
       <div className="container mx-auto px-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-2">
@@ -11,24 +11,30 @@ const Footer = () => {
             </h2>
             <ul>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a className="text-gray-400 hover:text-white" href="#">
                   Livrari si Retururi
                 </a>
               </li>
               <li>
-                <a href="https://anpc.ro/" className="text-gray-400 hover:text-white">
+                <a
+                  className="text-gray-400 hover:text-white"
+                  href="https://anpc.ro/"
+                >
                   Termeni și Condiții
                 </a>
               </li>
               <li>
-                <a href="https://anpc.ro/" className="text-gray-400 hover:text-white">
+                <a
+                  className="text-gray-400 hover:text-white"
+                  href="https://anpc.ro/"
+                >
                   Politica de confidentialitate
                 </a>
               </li>
               <li>
                 <a
-                  href="https://anpc.ro/"
                   className="text-gray-400 hover:text-white"
+                  href="https://anpc.ro/"
                 >
                   ANPC
                 </a>
@@ -45,10 +51,7 @@ const Footer = () => {
             <ul>
               <li className="flex">
                 <h3 className="text-gray-400 ">Telefon: </h3>
-                <h3 className="text-gray-400 hover:text-white">
-
-                  0751-839-308
-                </h3>
+                <h3 className="text-gray-400 hover:text-white">0751-839-308</h3>
               </li>
               <li className="flex">
                 <h3 className="text-gray-400 ">Email: </h3>
@@ -68,7 +71,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

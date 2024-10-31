@@ -1,7 +1,7 @@
 // /components/MaterialList.tsx
 import React from 'react'
-import MaterialCard from '@ui/materials/MaterialCard'
 
+import MaterialCard from '@/components/MaterialCard'
 import { Material } from '@/lib/definitions'
 
 interface MaterialListProps {

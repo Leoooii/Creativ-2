@@ -1,18 +1,18 @@
 import {
+  Button,
   Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
   DropdownItem,
-  Button
-} from "@nextui-org/react";
+  DropdownMenu,
+  DropdownTrigger
+} from '@nextui-org/react'
 
 interface DropdownItem {
-  label: string;
+  label: string
 }
 
 interface DropdownComponentProps {
-  array: DropdownItem[]; // Array de obiecte de tip DropdownItem
-  name: string;
+  array: DropdownItem[] // Array de obiecte de tip DropdownItem
+  name: string
 }
 
 export const DropdownComponent = ({
@@ -25,23 +25,23 @@ export const DropdownComponent = ({
         <Button variant="bordered">{name}</Button>
       </DropdownTrigger>
       <DropdownMenu
-        variant="faded"
-        color="primary"
         aria-label="Dynamic Actions"
-        items={array}
         className="rounded-lg"
+        color="primary"
+        items={array}
+        variant="faded"
       >
         {item => (
           <DropdownItem
             key={item.label}
-            color={"primary"}
-            className={"default bg-white"}
-            href={`/materials/${item.label}`}
+            className={'default bg-white'}
+            color={'primary'}
+            href={`/admin/${item.label}`}
           >
             {item.label}
           </DropdownItem>
         )}
       </DropdownMenu>
     </Dropdown>
-  );
-};
+  )
+}

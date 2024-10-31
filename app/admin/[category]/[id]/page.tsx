@@ -1,7 +1,7 @@
 export default async function Page({
   params
 }: {
-  params: Promise<{ category: string }>
+  params: Promise<{ category: string; id: string }>
 }) {
   const category = (await params).category
   const id = (await params)?.id

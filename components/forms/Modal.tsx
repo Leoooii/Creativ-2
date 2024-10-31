@@ -9,8 +9,9 @@ import {
   ModalHeader,
   useDisclosure
 } from '@nextui-org/react'
-import AddItemForm from '@ui/materials/AddItemForm'
 import React from 'react'
+
+import AddItemForm from '@/components/forms/AddItemForm'
 
 interface ModalProps {
   onSubmit: () => Promise<void>

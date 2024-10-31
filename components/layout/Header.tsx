@@ -10,9 +10,9 @@ import {
   Metalurgice,
   Sanitare,
   Unelte
-} from '../public/data/DummyData'
+} from '../../public/data/DummyData'
 
-import { DropdownComponent } from './DropdownComponent'
+import { DropdownComponent } from '@/components/Dropdown'
 // import { SearchComponent } from './SearchComponent';
 
 const Header = () => {

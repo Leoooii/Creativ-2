@@ -2,13 +2,13 @@
 
 import Image from 'next/image'
 
-import ResponsiveCarousel from '@/components/CarouselComponent'
-import Footer from '@/components/Footer'
-import AboutUs from '@/components/AboutUsComponent'
+import ResponsiveCarousel from '@/components/Carousel'
+import Footer from '@/components/layout/Footer'
+import AboutUs from '@/components/AboutUs'
 
 export default function Home() {
   return (
-    <div className="container mx-auto p-4 h-full flex flex-col gap-10 ">
+    <div className="container mx-auto  h-full flex flex-col gap-10 ">
       <ResponsiveCarousel />
       <AboutUs />
 
@@ -20,14 +20,6 @@ export default function Home() {
           src={'/images/work.jpg'}
           width={4608}
         />
-
-        {/*<Image*/}
-        {/*  src={"/images/creativbuilding.jpg"}*/}
-        {/*  height={160}*/}
-        {/*  width={213}*/}
-        {/*  alt="worker"*/}
-        {/*  className="rounded-xl"*/}
-        {/*/>*/}
       </div>
       <div className="h-full grid grid-cols-2 bg-gray-100 p-5">
         <div>

@@ -3,10 +3,10 @@
 import { Suspense, useEffect, useState } from 'react'
 import { Slider } from '@nextui-org/react'
 import { useDebounce } from 'use-debounce'
-import PaginationComponent from '@ui/materials/pagination'
 import { useSearchParams } from 'next/navigation'
-import { InvoicesTableSkeleton } from '@ui/skeletons'
 
+import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
+import PaginationComponent from '@/components/layout/pagination'
 import { Material } from '@/lib/definitions'
 import MaterialList from '@/components/MaterialsList'
 import { fetchMaterials } from '@/lib/data'

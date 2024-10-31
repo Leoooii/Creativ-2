@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Providers } from './providers'
 
-import SideNav from '@/ui/dashboard/sidenav'
+import SideNav from '@/components/layout/sidenav'
 import { CounterStoreProvider } from '@/providers/counter-store-provider'
 import { AuthStoreProvider } from '@/providers/auth-store-provider'
 

@@ -3,17 +3,18 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { onAuthStateChanged, User } from '@firebase/auth'
 import { useDebounce } from 'use-debounce'
-import PaginationComponent from '@ui/materials/pagination'
-import { InvoicesTableSkeleton } from '@ui/skeletons'
 import { Button, Slider } from '@nextui-org/react'
-import AcmeLogo from '@ui/creativ-logo'
-import AutocompleteComponent from '@ui/materials/Autocomplete'
 
-import ModalComponent from '@/components/Modal'
+import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
+import AcmeLogo from '@/components/ui/creativ-logo'
+import PaginationComponent from '@/components/layout/pagination'
+import AutocompleteComponent from '@/components/forms/Autocomplete'
+import ModalComponent from '@/components/forms/Modal'
 import MaterialList from '@/components/MaterialsList'
 import { fetchCategories, fetchMaterials } from '@/lib/data'
 import { Category, Material } from '@/lib/definitions'
 import { auth, signIn, signOut } from '@/lib/firebase'
+import Header from '@/components/layout/Header'
 
 const AdminPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false)
@@ -102,6 +103,7 @@ const AdminPage = () => {
 
   return (
     <div>
+      <Header />
       <div className="flex p-3 justify-between h-screen">
         <div className="w-4/5 overflow-y-auto h-full ">
           <Suspense fallback={<InvoicesTableSkeleton />}>

@@ -4,17 +4,17 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { onAuthStateChanged, User } from '@firebase/auth'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useDebounce } from 'use-debounce'
-import AcmeLogo from '@app/ui/creativ-logo'
 import { Button, Slider } from '@nextui-org/react'
-import { InvoicesTableSkeleton } from '@app/ui/skeletons'
-import PaginationComponent from '@app/ui/materials/pagination'
-import AutocompleteComponent from '@app/ui/materials/Autocomplete'
 
+import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
+import PaginationComponent from '@/components/layout/pagination'
+import AutocompleteComponent from '@/components/forms/Autocomplete'
 import MaterialList from '@/components/MaterialsList'
 import { auth, signIn, signOut } from '@/lib/firebase'
 import { fetchCategories, fetchMaterials } from '@/lib/data'
 import { Category, Material } from '@/lib/definitions'
-import ModalComponent from '@/components/Modal'
+import ModalComponent from '@/components/forms/Modal'
+import CreativLogo from '@/components/ui/creativ-logo'
 
 const CategoryPage = ({ filteredCategory }: { filteredCategory: string }) => {
   const [isAuthorized, setIsAuthorized] = useState(false)
@@ -95,7 +95,7 @@ const CategoryPage = ({ filteredCategory }: { filteredCategory: string }) => {
           'w-full h-screen bg-blue-950 flex flex-col justify-center items-center gap-2'
         }
       >
-        <AcmeLogo />
+        <CreativLogo />
         <Button color={'primary'} size={'lg'} onClick={handleLogin}>
           Login
         </Button>
