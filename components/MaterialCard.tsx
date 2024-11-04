@@ -8,26 +8,21 @@ import {
   CardFooter,
   Divider,
   Image,
-  Input,
-  Switch
+  Input
 } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@nextui-org/link'
 
 import { deleteMaterial, updateMaterial } from '@/lib/data'
 import { Material } from '@/lib/definitions'
+import { useAuthStore } from '@/providers/auth-store-provider'
 
 interface MaterialProps {
   material: Material
   onDelete: () => Promise<void>
-  isEditable: boolean
 }
 
-const MaterialCard: React.FC<MaterialProps> = ({
-  material,
-  onDelete,
-  isEditable
-}) => {
+const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
   // Inițializează starea cu valorile din material
   const [name, setName] = useState(material.name)
   const [price, setPrice] = useState(material.price)
@@ -35,6 +30,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
   const [category, setCategory] = useState(material.category)
   const [available, setAvailable] = useState(material.available)
   const router = useRouter()
+  const isAdmin = useAuthStore(state => state.isAdmin)
 
   // Funcția pentru a gestiona schimbarea numelui
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +77,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
       shadow="lg"
     >
       <CardBody className="overflow-visible p-0 flex justify-center ">
-        <Link href={`/admin/${material.category}/${material.id}`}>
+        <Link href={`/catalog/${material.id}`}>
           <div className="flex justify-center w-full mt-2">
             <Image
               alt={material.name}
@@ -108,7 +104,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
         <Input
           isRequired={true}
           label="Nume"
-          readOnly={!isEditable}
+          readOnly={!isAdmin}
           type="text"
           value={name}
           onChange={handleNameChange}
@@ -116,7 +112,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
 
         <Input
           label="Pret (RON) cu TVA"
-          readOnly={!isEditable}
+          readOnly={!isAdmin}
           type="number"
           value={String(price)}
           onChange={handlePriceChange}
@@ -133,7 +129,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
         {/*  />*/}
         {/*)}*/}
       </CardFooter>
-      {isEditable && (
+      {isAdmin && (
         <CardFooter className="text-small justify-between">
           <Button
             className="text-white px-3 py-1 rounded-lg  hover:border hover:border-cyan-400"
@@ -143,7 +139,7 @@ const MaterialCard: React.FC<MaterialProps> = ({
           >
             Editeaza
           </Button>
-          <Switch isSelected={available} onValueChange={setAvailable} />
+          {/*<Switch isSelected={available} onValueChange={setAvailable} />*/}
           <Button
             className=" px-3 py-1 rounded-lg hover:text-white hover:border hover:border-cyan-400"
             color="danger"

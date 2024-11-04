@@ -13,11 +13,13 @@ interface DropdownItem {
 interface DropdownComponentProps {
   array: DropdownItem[] // Array de obiecte de tip DropdownItem
   name: string
+  section: string
 }
 
 export const DropdownComponent = ({
   array = [],
-  name
+  name,
+  section
 }: DropdownComponentProps) => {
   return (
     <Dropdown backdrop="blur">
@@ -36,7 +38,7 @@ export const DropdownComponent = ({
             key={item.label}
             className={'default bg-white'}
             color={'primary'}
-            href={`/admin/${item.label}`}
+            href={`/${section}?category=${item.label}`}
           >
             {item.label}
           </DropdownItem>

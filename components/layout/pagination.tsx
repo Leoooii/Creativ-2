@@ -1,11 +1,11 @@
-import React from "react";
-import { Button, Pagination } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import React from 'react'
+import { Button, Pagination } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
 
 interface PaginationProps {
-  page: number;
-  numberOfPages: number;
-  setPage: (newPage: number) => void;
+  page: number
+  numberOfPages: number
+  setPage: (newPage: number) => void
 }
 
 const PaginationComponent: React.FC<PaginationProps> = ({
@@ -13,10 +13,10 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   numberOfPages,
   setPage
 }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
-    <div className="flex flex-col gap-5 mb-5  ">
+    <div className="flex flex-col gap-5 rounded-md p-2 bg-blue-900 z-50 fixed bottom-0">
       <Pagination
         color="primary"
         page={page}
@@ -26,24 +26,24 @@ const PaginationComponent: React.FC<PaginationProps> = ({
       />
       <div className="flex gap-2 justify-between">
         <Button
-          color="secondary"
+          className={'text-white'}
           size="sm"
-          variant="bordered"
+          variant="ghost"
           onPress={() => setPage(page > 1 ? page - 1 : page)}
         >
           Inapoi
         </Button>
         <Button
-          color="secondary"
+          className={'text-white'}
           size="sm"
-          variant="bordered"
+          variant="ghost"
           onPress={() => setPage(page < numberOfPages ? page + 1 : page)}
         >
           Inainte
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PaginationComponent;
+export default PaginationComponent

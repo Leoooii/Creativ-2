@@ -48,6 +48,8 @@ export async function fetchMaterials(
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE)
 
     // Returnează atât materialele, cât și numărul total de pagini
+    console.log(materialsData.rows.flat())
+
     return {
       materialsData: materialsData.rows.flat(),
       totalPages
@@ -70,6 +72,21 @@ export async function fetchCategories() {
   } catch (error) {
     console.error('Failed to fetch materials:', error)
     throw new Error('Failed to fetch materials')
+  }
+}
+
+export async function fetchMaterialById(id: string) {
+  try {
+    // Query-ul pentru a selecta materialul cu ID-ul specificat
+    const data = await sql<Material>`SELECT * FROM Materials WHERE id = ${id}`
+
+    console.log(data.rows[0], 'baa')
+
+    return data.rows[0]
+  } catch (error) {
+    console.log(error)
+
+    return null
   }
 }
 

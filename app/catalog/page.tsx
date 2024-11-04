@@ -1,7 +1,15 @@
-import React from 'react'
+import { Suspense } from 'react'
 
-const Page = () => {
-  return <div>Page</div>
+import Materials from '@/components/Materials'
+import { CardsSkeleton } from '@/components/ui/skeletons'
+
+export default function Page() {
+  return (
+    <div>
+      {/*<UrLparams />*/}
+      <Suspense fallback={<CardsSkeleton />}>
+        <Materials />
+      </Suspense>
+    </div>
+  )
 }
-
-export default Page

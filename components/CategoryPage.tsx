@@ -103,59 +103,53 @@ const CategoryPage = ({ filteredCategory }: { filteredCategory: string }) => {
     )
 
   return (
-    <div>
-      <div className="flex p-3 justify-between h-screen">
-        <div className="w-4/5 overflow-y-auto h-full pr-3">
-          <Suspense fallback={<InvoicesTableSkeleton />}>
-            <MaterialList
-              isEditable={true}
-              loadMaterials={loadMaterials}
-              materials={materials}
-            />
-          </Suspense>
-          {numberOfItems === 0 && (
-            <h1>Nu exista produse in acel interval de pret</h1>
-          )}
-        </div>
-        <div className="w-1/5 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
-          <h1 className={'text-center'}>
-            Welcome Admin <br />
-            {user?.displayName}
-          </h1>
+    <div className="flex p-3 justify-between h-screen">
+      <div className="w-4/5 overflow-y-auto h-full pr-3">
+        <Suspense fallback={<InvoicesTableSkeleton />}>
+          <MaterialList loadMaterials={loadMaterials} materials={materials} />
+        </Suspense>
+        {numberOfItems === 0 && (
+          <h1>Nu exista produse in acel interval de pret</h1>
+        )}
+      </div>
+      <div className="w-1/5 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
+        <h1 className={'text-center'}>
+          Welcome Admin <br />
+          {user?.displayName}
+        </h1>
 
-          <div className="w-full flex justify-center">
-            <PaginationComponent
-              numberOfPages={numberOfPages}
-              page={page}
-              setPage={setPage}
-            />
-          </div>
-          <h1>Selecteaza filtre:</h1>
-          <>
-            <Slider
-              className="max-w-md"
-              formatOptions={{ style: 'currency', currency: 'LEI' }}
-              label="Interval pret"
-              maxValue={300}
-              minValue={0}
-              step={10}
-              value={value}
-              onChange={(value: number | number[]) =>
-                setValue(Array.isArray(value) ? value : [value])
-              }
-            />
-          </>
-          <AutocompleteComponent
-            categories={categories}
-            defaultValue={filteredCategory}
-            setCategory={handleCategory}
+        <div className="w-full flex justify-center">
+          <PaginationComponent
+            numberOfPages={numberOfPages}
+            page={page}
+            setPage={setPage}
           />
-
-          <ModalComponent onSubmit={loadMaterials} />
-          <Button color={'danger'} onClick={signOut}>
-            Delogare
-          </Button>
         </div>
+        <h1>Selecteaza filtre:</h1>
+        <>
+          <Slider
+            className="max-w-md"
+            formatOptions={{ style: 'currency', currency: 'LEI' }}
+            label="Interval pret"
+            maxValue={300}
+            minValue={0}
+            step={10}
+            value={value}
+            onChange={(value: number | number[]) =>
+              setValue(Array.isArray(value) ? value : [value])
+            }
+          />
+        </>
+        <AutocompleteComponent
+          categories={categories}
+          defaultValue={filteredCategory}
+          setCategory={handleCategory}
+        />
+
+        <ModalComponent onSubmit={loadMaterials} />
+        <Button color={'danger'} onClick={signOut}>
+          Delogare
+        </Button>
       </div>
     </div>
   )

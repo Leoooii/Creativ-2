@@ -1,4 +1,4 @@
-import CategoryPage from '@app/ui/materials/category'
+import CategoryPage from '@/components/CategoryPage'
 
 export default async function Page({
   params
@@ -9,7 +9,6 @@ export default async function Page({
 
   return (
     <div>
-      {/*My Post: {category}*/}
       <CategoryPage filteredCategory={category} />
     </div>
   )
