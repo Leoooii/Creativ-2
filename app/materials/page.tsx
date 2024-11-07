@@ -46,11 +46,7 @@ export default function Page() {
     <div className="flex p-3 justify-between h-screen">
       <div className="w-4/5 overflow-y-auto h-full pr-3">
         <Suspense fallback={<InvoicesTableSkeleton />}>
-          <MaterialList
-            isEditable={false}
-            loadMaterials={loadMaterials}
-            materials={materials}
-          />
+          <MaterialList loadMaterials={loadMaterials} materials={materials} />
         </Suspense>
         {numberOfItems === 0 && (
           <h1>Nu exista produse in acel interval de pret</h1>

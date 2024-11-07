@@ -75,6 +75,30 @@ export async function fetchCategories() {
   }
 }
 
+export async function addCategorie(name: string) {
+  if (!name) {
+    throw new Error('All fields are required')
+  }
+  console.log(name)
+
+  try {
+    await sql`
+      INSERT INTO Categories (name)
+      VALUES (${name});
+    `
+    const query = await sql<Category[]>`
+    SELECT * FROM Categories
+  `
+
+    console.log(query)
+
+    return { message: 'Category added successfully' }
+  } catch (error) {
+    console.error('Failed to add material:', error)
+    throw new Error('Failed to add material')
+  }
+}
+
 export async function fetchMaterialById(id: string) {
   try {
     // Query-ul pentru a selecta materialul cu ID-ul specificat

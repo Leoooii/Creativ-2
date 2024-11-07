@@ -11,20 +11,20 @@ import sanitare from '../public/images/sanitare.jpg'
 
 export default function ResponsiveCarousel() {
   return (
-    <div>
+    <div className={'w-full '}>
       <Carousel
         infiniteLoop
         autoPlay={true}
         showStatus={false}
         showThumbs={false}
       >
-        <div className="flex gap-10">
+        <div className="flex gap-10  h-min">
           <div className="w-1/3 flex flex-col justify-center items-center gap-2 text-black font-sans p-14">
             <Image
               alt="creativ-logo"
-              height={500}
+              height={300}
               src={'/images/logo.png'}
-              width={500}
+              width={300}
             />
 
             <div className="flex flex-col align-baseline self-start">

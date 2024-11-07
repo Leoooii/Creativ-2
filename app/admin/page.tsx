@@ -6,12 +6,11 @@ import { useDebounce } from 'use-debounce'
 import { Button, Slider } from '@nextui-org/react'
 
 import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
-import AcmeLogo from '@/components/ui/creativ-logo'
 import PaginationComponent from '@/components/layout/pagination'
 import AutocompleteComponent from '@/components/forms/Autocomplete'
 import ModalComponent from '@/components/forms/Modal'
 import MaterialList from '@/components/MaterialsList'
-import { fetchCategories, fetchMaterials } from '@/lib/data'
+import { addCategorie, fetchCategories, fetchMaterials } from '@/lib/data'
 import { Category, Material } from '@/lib/definitions'
 import { auth, signIn, signOut } from '@/lib/firebase'
 import Header from '@/components/layout/Header'
@@ -87,31 +86,13 @@ const AdminPage = () => {
     router.push(`/admin/${category}`)
   }
 
-  if (!isAuthorized)
-    return (
-      <div
-        className={
-          'w-full h-screen bg-blue-950 flex flex-col justify-center items-center gap-2'
-        }
-      >
-        <AcmeLogo />
-        <Button color={'primary'} size={'lg'} onClick={handleLogin}>
-          Login
-        </Button>
-      </div>
-    )
-
   return (
     <div>
-      <Header />
+      <Header section={'admin'} />
       <div className="flex p-3 justify-between h-screen">
         <div className="w-4/5 overflow-y-auto h-full ">
           <Suspense fallback={<InvoicesTableSkeleton />}>
-            <MaterialList
-              isEditable={true}
-              loadMaterials={loadMaterials}
-              materials={materials}
-            />
+            <MaterialList loadMaterials={loadMaterials} materials={materials} />
           </Suspense>
           {numberOfItems === 0 && (
             <h1>Nu exista produse in acel interval de pret</h1>
@@ -154,6 +135,13 @@ const AdminPage = () => {
           <ModalComponent onSubmit={loadMaterials} />
           <Button color={'danger'} onClick={signOut}>
             Delogare
+          </Button>
+          <Button
+            onClick={() => {
+              addCategorie('apa')
+            }}
+          >
+            Adauga categorie
           </Button>
         </div>
       </div>

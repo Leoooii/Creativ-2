@@ -5,9 +5,11 @@ import React from 'react'
 
 import { Providers } from './providers'
 
-import SideNav from '@/components/layout/sidenav'
+import Navbar from '@/components/layout/Navbar'
 import { CounterStoreProvider } from '@/providers/counter-store-provider'
 import { AuthStoreProvider } from '@/providers/auth-store-provider'
+import OptionsHeader from '@/components/layout/OptionsHeader'
+import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Creativ Tub',
@@ -38,16 +40,20 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <AuthStoreProvider>
-            <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-              <div className="w-full flex-none md:w-72">
-                <SideNav />
+            <div className="flex min-h-screen flex-col  md:overflow-hidden ">
+              <div className="w-full flex-none  bg-gray-800">
+                <Navbar />
               </div>
-              <div className="flex-grow  md:overflow-y-auto ">
+              <div className="w-3/4 mx-auto bg-blue-700">
+                <OptionsHeader />
+              </div>
+              <div className="flex-grow   w-3/4 mx-auto ">
                 <CounterStoreProvider>
                   <Providers>{children}</Providers>
                 </CounterStoreProvider>
               </div>
             </div>
+            <Footer />
           </AuthStoreProvider>
         </Providers>
       </body>

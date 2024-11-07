@@ -9,8 +9,8 @@ export default async function Page({
   const material = await fetchMaterialById(id)
 
   return (
-    <div>
-      {material && material.name}
+    <div className={'p-10'}>
+      <h1>{material?.name}</h1>
       <img alt={material?.name} src={material?.image_url} />
       <h3>{material?.description}</h3>
       <h3>{material?.available}</h3>

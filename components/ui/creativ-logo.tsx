@@ -6,12 +6,10 @@ export default function CreativLogo() {
       {/*<GlobeAltIcon className="h-12 w-12 rotate-[15deg]" />*/}
       <Image
         alt="creativ-logo"
-        height={500}
+        height={200}
         src={'/images/logo.png'}
-        width={500}
+        width={200}
       />
-      {/* <p className="text-[44px]">Creativ </p>
-      <p className="text-[44px]">Tub</p> */}
     </div>
   )
 }
