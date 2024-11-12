@@ -22,9 +22,11 @@ export const DropdownComponent = ({
   section
 }: DropdownComponentProps) => {
   return (
-    <Dropdown backdrop="blur">
+    <Dropdown backdrop="transparent">
       <DropdownTrigger>
-        <Button variant="bordered">{name}</Button>
+        <Button color={'primary'} variant="shadow">
+          {name}
+        </Button>
       </DropdownTrigger>
       <DropdownMenu
         aria-label="Dynamic Actions"

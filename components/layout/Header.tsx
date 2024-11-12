@@ -17,7 +17,7 @@ import { DropdownComponent } from '@/components/Dropdown'
 
 const Header = ({ section }: { section: string }) => {
   return (
-    <Navbar isBordered shouldHideOnScroll className="p-2">
+    <Navbar isBordered shouldHideOnScroll className="p-1">
       <NavbarContent className="hidden sm:flex gap-4 w-full" justify="center">
         <NavbarItem>
           <DropdownComponent array={Gradina} name="Gradina" section={section} />

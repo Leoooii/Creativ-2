@@ -34,7 +34,7 @@ export default function ResponsiveCarousel() {
               <h3 className="self-start">Asiguram transportul</h3>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col justify-center align-middle items-center">
             <Image alt="image1" src={constructi} />
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function ResponsiveCarousel() {
               <h3 className="self-start">Asiguram transportul</h3>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col justify-center align-middle items-center">
             <Image alt="image1" src={metalurgice} />
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function ResponsiveCarousel() {
               <h3 className="self-start">Asiguram transportul</h3>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col justify-center align-middle items-center">
             <Image alt="image1" src={sanitare} />
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function ResponsiveCarousel() {
               <h3 className="self-start">Asiguram transportul</h3>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col justify-center align-middle items-center">
             <Image alt="image1" src={unelte} />
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function ResponsiveCarousel() {
               <h3 className="self-start">Asiguram transportul</h3>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col justify-center align-middle items-center">
             <Image alt="image1" src={electrice} />
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function ResponsiveCarousel() {
               <h3 className="self-start">Asiguram transportul</h3>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col justify-center align-middle items-center">
             <Image alt="image1" src={gradina} />
           </div>
         </div>

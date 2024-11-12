@@ -1,10 +1,9 @@
 'use client'
 
-import { UserIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
-import { UserGroupIcon } from '@heroicons/react/16/solid'
+import { StarIcon } from '@heroicons/react/16/solid'
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -15,10 +14,10 @@ const links = [
   //   href: '/materials',
   //   icon: DocumentDuplicateIcon
   // },
-  { name: 'Catalog', href: '/catalog', icon: UserGroupIcon },
+  // { name: 'Catalog', href: '/catalog', icon: PowerIcon },
   // { name: 'Contul meu', href: '/auth', icon: UserIcon },
   // { name: 'Cos', href: '/admin', icon: ShoppingCartIcon },
-  { name: 'Admin', href: '/admin2', icon: UserIcon }
+  { name: 'Catalog', href: '/catalog', icon: StarIcon }
 ]
 
 export default function NavLinks() {

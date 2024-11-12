@@ -17,6 +17,7 @@ interface FilterSidebarProps {
   setPage: (page: number) => void
   numberOfPages: number
   reload: () => Promise<void>
+  isAdmin: boolean
 }
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
@@ -26,7 +27,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   setValue,
   page,
   setPage,
-  numberOfPages
+  numberOfPages,
+  isAdmin
 }) => (
   <div className="w-1/4 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
     <h1>Selectează filtre:</h1>
@@ -48,12 +50,19 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
       setCategory={setCategory}
     />
 
-    <CustomModal buttonName={'Adauga Item'} header={'hello'}>
-      <AddItemForm />
-    </CustomModal>
-    <CustomModal buttonName={'Adauga Categorie'} header={'Adauga categorie'}>
-      <AddCategoryForm />
-    </CustomModal>
+    {isAdmin && (
+      <>
+        <CustomModal buttonName={'Adauga Item'} header={'hello'}>
+          <AddItemForm />
+        </CustomModal>
+        <CustomModal
+          buttonName={'Adauga Categorie'}
+          header={'Adauga categorie'}
+        >
+          <AddCategoryForm />
+        </CustomModal>
+      </>
+    )}
     {numberOfPages > 1 && (
       <div className="w-full flex justify-center">
         <PaginationComponent

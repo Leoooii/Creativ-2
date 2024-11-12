@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-950 text-white py-8 bottom-0  w-full rounded-lg">
+    <footer className="bg-blue-950 text-white py-6 bottom-0  w-full rounded-lg">
       <div className="container mx-auto px-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-2">
@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-6 pt-4 text-center">
+        <div className="border-t border-gray-700 mt-2 pt-4 text-center">
           <p className="text-gray-400">
             &copy; {} CREATIV TUB SRL. Toate drepturile rezervate.
           </p>

@@ -14,10 +14,11 @@ export default function Home() {
         <div className={`w-1/3`}>
           <LinksAccordion />
         </div>
-        <div className={'w-2/3 flex p-2'}>
+        <div className={'w-2/3 flex p-2 '}>
           <ResponsiveCarousel />
         </div>
       </div>
+
       <AboutUs />
 
       <div className="flex justify-center">
@@ -29,7 +30,10 @@ export default function Home() {
           width={4608}
         />
       </div>
-      <div className="h-full grid grid-cols-2 bg-gray-100 p-5">
+      <div
+        className="h-full grid grid-cols-2 bg-gray-100 p-5"
+        style={{ boxShadow: '0px 4px 10px rgba(100, 100, 200, 150)' }}
+      >
         <div>
           <h1 className="font-bold font-sans mb-3">PROGRAM DE LUCRU</h1>
           <hr />
@@ -56,7 +60,12 @@ export default function Home() {
           allowFullScreen
           height="100%"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2831.962043261264!2d26.006014!3d44.367834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40adff8363bae4c5%3A0x9d630f984af38ef5!2sCREATIV%20TUB%20SRL!5e0!3m2!1sen!2sro!4v1633936462342!5m2!1sen!2sro"
-          style={{ border: 0, borderRadius: 10, height: 250 }}
+          style={{
+            border: 0,
+            borderRadius: 10,
+            height: 250,
+            boxShadow: '0px 4px 10px rgba(0, 100, 200, 50)'
+          }}
           title="location"
           width="100%"
         />

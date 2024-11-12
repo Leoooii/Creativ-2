@@ -75,9 +75,10 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
     <Card
       className={`border border-white rounded-md  ${!material.available && 'bg-red-500'} `}
       shadow="lg"
+      style={{ boxShadow: '0px 4px 10px rgba(0, 00, 100, 50)' }}
     >
       <CardBody className="overflow-visible p-0 flex justify-center ">
-        <Link href={`/admin2/${material.id}`}>
+        <Link href={`/catalog/${material.id}`}>
           <div className="flex justify-center w-full mt-2">
             <Image
               alt={material.name}

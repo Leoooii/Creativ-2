@@ -34,13 +34,13 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased'
+          ' bg-background font-sans antialiased'
           // fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <AuthStoreProvider>
-            <div className="flex min-h-screen flex-col  md:overflow-hidden ">
+            <div className="flex  flex-col  md:overflow-hidden ">
               <div className="w-full flex-none  bg-gray-800">
                 <Navbar />
               </div>

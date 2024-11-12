@@ -13,11 +13,12 @@ import {
 
 const LinksAccordion = () => {
   return (
-    <Accordion isCompact={true} variant={'bordered'}>
+    <Accordion isCompact={true} variant={'splitted'}>
       <AccordionItem
         key="1"
         aria-label="Accordion 1"
-        className={'flex flex-col '}
+        className={'flex flex-col shadow-blue-950'}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
         title="Metalurgice"
       >
         {Metalurgice.map(item => {
@@ -28,12 +29,17 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
       </AccordionItem>
-      <AccordionItem key="2" aria-label="Accordion 2" title="Constructii">
+      <AccordionItem
+        key="2"
+        aria-label="Accordion 2"
+        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        title="Constructii"
+      >
         {Constructii.map(item => {
           return (
             <div
@@ -42,12 +48,17 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
       </AccordionItem>
-      <AccordionItem key="3" aria-label="Accordion 3" title="Electrice">
+      <AccordionItem
+        key="3"
+        aria-label="Accordion 3"
+        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        title="Electrice"
+      >
         {Electrice.map(item => {
           return (
             <div
@@ -56,12 +67,17 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
       </AccordionItem>
-      <AccordionItem key="4" aria-label="Accordion 4" title="Sanitare">
+      <AccordionItem
+        key="4"
+        aria-label="Accordion 4"
+        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        title="Sanitare"
+      >
         {Sanitare.map(item => {
           return (
             <div
@@ -70,12 +86,17 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
       </AccordionItem>
-      <AccordionItem key="5" aria-label="Accordion 5" title="Unelte">
+      <AccordionItem
+        key="5"
+        aria-label="Accordion 5"
+        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        title="Unelte"
+      >
         {Unelte.map(item => {
           return (
             <div
@@ -84,12 +105,17 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
       </AccordionItem>
-      <AccordionItem key="6" aria-label="Accordion 6" title="Gradina">
+      <AccordionItem
+        key="6"
+        aria-label="Accordion 6"
+        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        title="Gradina"
+      >
         {Gradina.map(item => {
           return (
             <div
@@ -98,7 +124,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
