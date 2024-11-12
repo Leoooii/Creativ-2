@@ -7,9 +7,9 @@ import { Slider } from '@nextui-org/react'
 
 import { fetchMaterials } from '@/lib/data'
 import { Material } from '@/lib/definitions'
-import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
-import MaterialList from '@/components/MaterialsList'
 import { useAuthStore } from '@/providers/auth-store-provider'
+import MaterialList from '@/components/MaterialsList'
+import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
 import PaginationComponent from '@/components/layout/pagination'
 
 const Materials = () => {

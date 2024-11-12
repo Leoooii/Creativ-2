@@ -54,13 +54,15 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     <CustomModal buttonName={'Adauga Categorie'} header={'Adauga categorie'}>
       <AddCategoryForm />
     </CustomModal>
-    <div className="w-full flex justify-center">
-      <PaginationComponent
-        numberOfPages={numberOfPages}
-        page={page}
-        setPage={setPage}
-      />
-    </div>
+    {numberOfPages > 1 && (
+      <div className="w-full flex justify-center">
+        <PaginationComponent
+          numberOfPages={numberOfPages}
+          page={page}
+          setPage={setPage}
+        />
+      </div>
+    )}
   </div>
 )
 

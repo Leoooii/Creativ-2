@@ -77,7 +77,7 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
       shadow="lg"
     >
       <CardBody className="overflow-visible p-0 flex justify-center ">
-        <Link href={`/catalog/${material.id}`}>
+        <Link href={`/admin2/${material.id}`}>
           <div className="flex justify-center w-full mt-2">
             <Image
               alt={material.name}

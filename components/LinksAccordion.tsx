@@ -28,7 +28,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link href={`/catalog?category=${item.label}`}>{item.label}</Link>
+              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
@@ -42,9 +42,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link key={item.label} href={`/catalog?category=${item.label}`}>
-                {item.label}
-              </Link>
+              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
@@ -58,9 +56,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link key={item.label} href={`/catalog?category=${item.label}`}>
-                {item.label}
-              </Link>
+              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
@@ -74,9 +70,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link key={item.label} href={`/catalog?category=${item.label}`}>
-                {item.label}
-              </Link>
+              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
@@ -90,9 +84,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link key={item.label} href={`/catalog?category=${item.label}`}>
-                {item.label}
-              </Link>
+              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}
@@ -106,9 +98,7 @@ const LinksAccordion = () => {
                 'hover:text-xl hover:bg-blue-950 hover:text-white px-1 rounded-md'
               }
             >
-              <Link key={item.label} href={`/catalog?category=${item.label}`}>
-                {item.label}
-              </Link>
+              <Link href={`/admin2?category=${item.label}`}>{item.label}</Link>
             </div>
           )
         })}

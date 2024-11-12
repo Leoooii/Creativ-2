@@ -13,7 +13,7 @@ import Header from '@/components/layout/Header'
 const AdminPage = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const categori = searchParams.get('category')
+  const category = searchParams.get('category')
   const [materials, setMaterials] = useState<Material[]>([])
   const [value, setValue] = useState([0, 300])
   const [debouncedValue] = useDebounce(value, 500)
@@ -22,18 +22,31 @@ const AdminPage = () => {
   const [numberOfPages, setNumberOfPages] = useState(1)
 
   const [categories, setCategories] = useState<Category[]>([])
-  const [category, setCategory] = useState('Constructii')
 
   const loadMaterials = async () => {
-    const { materialsData, totalPages } = await fetchMaterials(
-      page,
-      debouncedValue[0],
-      debouncedValue[1]
-    )
+    if (category) {
+      const { materialsData, totalPages } = await fetchMaterials(
+        page,
+        debouncedValue[0],
+        debouncedValue[1],
+        category.toLowerCase()
+      )
 
-    setNumberOfPages(totalPages)
-    setMaterials(materialsData)
-    setNumberOfItems(materialsData.length)
+      console.log(materialsData)
+      setNumberOfPages(totalPages)
+      setMaterials(materialsData)
+      setNumberOfItems(materialsData.length)
+    } else {
+      const { materialsData, totalPages } = await fetchMaterials(
+        page,
+        debouncedValue[0],
+        debouncedValue[1]
+      )
+
+      setNumberOfPages(totalPages)
+      setMaterials(materialsData)
+      setNumberOfItems(materialsData.length)
+    }
   }
 
   useEffect(() => {
@@ -49,18 +62,21 @@ const AdminPage = () => {
     }
 
     loadCategories()
-  }, [debouncedValue, page])
+  }, [debouncedValue, page, category])
 
   const handleCategory = async (category: string) => {
-    setCategory(category)
-    router.push(`/admin/${category}`)
+    router.push(`/admin2?category=${category}`)
   }
 
   return (
     <div>
-      <Header section="admin" />
+      <Header section="admin2" />
+
       <div className="flex p-3 justify-between h-screen">
         <div className="w-4/5 overflow-y-auto h-full ">
+          <div className="w-full text-center bg-blue-950 text-white rounded-sm mb-2">
+            <h1>{category}</h1>
+          </div>
           <Suspense fallback={<InvoicesTableSkeleton />}>
             <MaterialList loadMaterials={loadMaterials} materials={materials} />
           </Suspense>
