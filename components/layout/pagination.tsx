@@ -16,7 +16,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   const router = useRouter()
 
   return (
-    <div className="flex flex-col gap-5 rounded-md p-2 bg-blue-900 z-50 fixed bottom-0">
+    <div className="flex flex-col gap-5 rounded-md p-2 bg-blue-900 z-50  bottom-0">
       <Pagination
         color="primary"
         page={page}

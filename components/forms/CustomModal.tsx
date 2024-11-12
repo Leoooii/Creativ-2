@@ -9,21 +9,27 @@ import {
   ModalHeader,
   useDisclosure
 } from '@nextui-org/react'
-import React from 'react'
-
-import AddItemForm from '@/components/forms/AddItemForm'
+import React, { ReactNode } from 'react'
 
 interface ModalProps {
-  onSubmit: () => void
+  buttonName: string
+  header: string
+
+  children?: ReactNode
 }
 
-const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
+const ModalComponent: React.FC<ModalProps> = ({
+  buttonName,
+  header,
+
+  children
+}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
   return (
     <>
       <Button color="primary" onPress={onOpen}>
-        Adauga produs
+        {buttonName}
       </Button>
       <Modal
         backdrop="opaque"
@@ -54,11 +60,9 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
           {onClose => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Adaugare item
+                {header}
               </ModalHeader>
-              <ModalBody>
-                <AddItemForm onSubmit={onSubmit} />
-              </ModalBody>
+              <ModalBody>{children}</ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Inchide

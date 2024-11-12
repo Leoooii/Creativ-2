@@ -7,7 +7,7 @@ const list = [
   },
   {
     description:
-      'Prin deviza noastra “BADUC …. si casa e gata” dorim sa va facem cunoscut faptul ca noi suntem acel “furnizor unic” pe care il cautati pentru a economisi timp si bani, achizitionand materiale necesare din aceeasi surs.'
+      'Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp.'
   },
   {
     description:

@@ -10,7 +10,7 @@ import PaginationComponent from '@/components/layout/pagination'
 import AutocompleteComponent from '@/components/forms/Autocomplete'
 import ModalComponent from '@/components/forms/Modal'
 import MaterialList from '@/components/MaterialsList'
-import { addCategorie, fetchCategories, fetchMaterials } from '@/lib/data'
+import { fetchCategories, fetchMaterials } from '@/lib/data'
 import { Category, Material } from '@/lib/definitions'
 import { auth, signIn, signOut } from '@/lib/firebase'
 import Header from '@/components/layout/Header'
@@ -135,13 +135,6 @@ const AdminPage = () => {
           <ModalComponent onSubmit={loadMaterials} />
           <Button color={'danger'} onClick={signOut}>
             Delogare
-          </Button>
-          <Button
-            onClick={() => {
-              addCategorie('apa')
-            }}
-          >
-            Adauga categorie
           </Button>
         </div>
       </div>

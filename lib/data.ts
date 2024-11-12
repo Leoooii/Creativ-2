@@ -75,7 +75,7 @@ export async function fetchCategories() {
   }
 }
 
-export async function addCategorie(name: string) {
+export async function addCategory(name: string) {
   if (!name) {
     throw new Error('All fields are required')
   }

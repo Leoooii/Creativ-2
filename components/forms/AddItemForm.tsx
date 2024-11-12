@@ -8,14 +8,12 @@ import AutocompleteComponent from './Autocomplete'
 import { addMaterial, fetchCategories } from '@/lib/data'
 import { Category } from '@/lib/definitions'
 
-interface AddItemProps {
-  onSubmit: () => Promise<void>
-}
+interface AddItemProps {}
 
 const defaultImg =
   'https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/upload-bold-arrow-icon.png'
 
-const AddItemForm: React.FC<AddItemProps> = ({ onSubmit }) => {
+const AddItemForm: React.FC<AddItemProps> = () => {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('1')
   const [imageURL, setImageURL] = useState('')

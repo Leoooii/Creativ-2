@@ -3,6 +3,7 @@ import Link from 'next/link'
 import CreativLogo from '@/components/ui/creativ-logo'
 import NavLinks from '@/components/layout/nav-links'
 import SearchBar from '@/components/forms/SearchBar'
+import AuthButton from '@/components/layout/AuthButton'
 
 export default function Navbar() {
   return (
@@ -13,6 +14,7 @@ export default function Navbar() {
       <div className="flex items-center flex-col gap-2  md:flex-row ">
         <SearchBar />
         <NavLinks />
+        <AuthButton />
         {/*<NavAuth />*/}
 
         {/*<form>*/}

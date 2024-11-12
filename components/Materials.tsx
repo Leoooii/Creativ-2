@@ -32,7 +32,6 @@ const Materials = () => {
         category
       )
 
-      console.log('aici')
       setNumberOfPages(totalPages)
       setMaterials(materialsData)
       setNumberOfItems(materialsData.length)

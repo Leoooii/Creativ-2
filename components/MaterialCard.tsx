@@ -93,14 +93,6 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
 
       <Divider />
       <CardFooter className="text-small justify-between flex-col gap-2">
-        {/*<button*/}
-        {/*  onClick={() => {*/}
-        {/*    console.log('aici')*/}
-        {/*    router.push(`/${material.id}`)*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  Go*/}
-        {/*</button>*/}
         <Input
           isRequired={true}
           label="Nume"
@@ -117,17 +109,6 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
           value={String(price)}
           onChange={handlePriceChange}
         />
-
-        {/*{isEditable && (*/}
-        {/*  <Textarea*/}
-        {/*    label="Descriere"*/}
-        {/*    maxRows={!isEditable ? 10 : 3}*/}
-        {/*    minRows={1}*/}
-        {/*    readOnly={!isEditable}*/}
-        {/*    value={description}*/}
-        {/*    onChange={handleDescriptionChange}*/}
-        {/*  />*/}
-        {/*)}*/}
       </CardFooter>
       {isAdmin && (
         <CardFooter className="text-small justify-between">
