@@ -16,14 +16,17 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   const router = useRouter()
 
   return (
-    <div className="flex flex-col gap-5 rounded-md p-2 bg-blue-900 z-50  bottom-0">
-      <Pagination
-        color="primary"
-        page={page}
-        total={numberOfPages}
-        onChange={setPage}
-        // onChange={e => router.push(`/materials/${e}`)}
-      />
+    <div className="flex flex-col gap-5 rounded-md p-2 bg-blue-800 z-50  bottom-0  justify-center w-1/2 mx-auto border-1 border-white">
+      <div className="flex justify-center">
+        <Pagination
+          color="primary"
+          page={page}
+          total={numberOfPages}
+          onChange={setPage}
+          // onChange={e => router.push(`/materials/${e}`)}
+        />
+      </div>
+
       <div className="flex gap-2 justify-between">
         <Button
           className={'text-white'}
@@ -36,7 +39,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
         <Button
           className={'text-white'}
           size="sm"
-          variant="ghost"
+          variant="bordered"
           onPress={() => setPage(page < numberOfPages ? page + 1 : page)}
         >
           Inainte

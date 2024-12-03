@@ -33,7 +33,7 @@ export default function AboutUs() {
         return (
           <div
             key={item.description}
-            className="bg-blue-950 text-white rounded-md p-3 hover:bg-blue-900 hover:cursor-pointer flex items-center gap-2"
+            className="bg-gray-800 text-white rounded-md p-3 hover:bg-gray-900  flex items-center gap-2"
           >
             <div>
               <CheckCircleIcon className="size-8 text-white" color="white" />

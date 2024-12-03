@@ -8,8 +8,8 @@ import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
 import MaterialList from '@/components/MaterialsList'
 import { fetchCategories, fetchMaterials } from '@/lib/data'
 import { Category, Material } from '@/lib/definitions'
-import Header from '@/components/layout/Header'
 import { useAuthStore } from '@/providers/auth-store-provider'
+import PaginationComponent from '@/components/layout/pagination'
 
 const CatalogPage = () => {
   const router = useRouter()
@@ -31,7 +31,7 @@ const CatalogPage = () => {
         page,
         debouncedValue[0],
         debouncedValue[1],
-        category.toLowerCase()
+        category
       )
 
       console.log(materialsData)
@@ -71,32 +71,37 @@ const CatalogPage = () => {
   }
 
   return (
-    <div>
-      <Header section="catalog" />
-
-      <div className="flex p-3 justify-between h-screen">
-        <div className="w-4/5 overflow-y-auto h-full ">
-          <div className="w-full text-center bg-blue-950 text-white rounded-sm mb-2">
-            <h1>{category}</h1>
-          </div>
-          <Suspense fallback={<InvoicesTableSkeleton />}>
-            <MaterialList loadMaterials={loadMaterials} materials={materials} />
-          </Suspense>
-          {numberOfItems === 0 && (
-            <h1>Nu există produse în acel interval de preț</h1>
+    <div className="flex p-3 justify-between min-h-screen">
+      <FilterSidebar
+        categories={categories}
+        isAdmin={isAdmin}
+        numberOfPages={numberOfPages}
+        page={page}
+        reload={loadMaterials}
+        setCategory={handleCategory}
+        setPage={setPage}
+        setValue={setValue}
+        value={value}
+      />
+      <div className="w-4/5  h-full ">
+        {/*<div className="w-full text-center bg-blue-950 text-white rounded-sm mb-2">*/}
+        {/*  <h1>{category}</h1>*/}
+        {/*</div>*/}
+        <Suspense fallback={<InvoicesTableSkeleton />}>
+          <MaterialList loadMaterials={loadMaterials} materials={materials} />
+        </Suspense>
+        {numberOfItems === 0 && (
+          <h1>Nu există produse în acel interval de preț</h1>
+        )}
+        <div>
+          {numberOfPages > 1 && (
+            <PaginationComponent
+              numberOfPages={numberOfPages}
+              page={page}
+              setPage={setPage}
+            />
           )}
         </div>
-        <FilterSidebar
-          categories={categories}
-          isAdmin={isAdmin}
-          numberOfPages={numberOfPages}
-          page={page}
-          reload={loadMaterials}
-          setCategory={handleCategory}
-          setPage={setPage}
-          setValue={setValue}
-          value={value}
-        />
       </div>
     </div>
   )

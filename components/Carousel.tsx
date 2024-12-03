@@ -11,7 +11,10 @@ import sanitare from '../public/images/sanitare.jpg'
 
 export default function ResponsiveCarousel() {
   return (
-    <div className={'w-full '}>
+    <div
+      className={'w-full max-h-fit bg-white'}
+      style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
+    >
       <Carousel
         infiniteLoop
         autoPlay={true}

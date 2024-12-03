@@ -14,7 +14,7 @@ const MaterialList: React.FC<MaterialListProps> = ({
   loadMaterials
 }) => {
   return (
-    <div className="grid grid-cols-3 gap-3 px-10 pb-20">
+    <div className="grid grid-cols-3 gap-3 px-10 pb-20 pt-5">
       {materials.map(material => (
         <MaterialCard
           key={material.id}

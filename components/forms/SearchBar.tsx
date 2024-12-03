@@ -6,7 +6,7 @@ export default function SearchBar() {
   return (
     <Autocomplete
       allowsCustomValue
-      className="max-w-xs"
+      className="max-w-xs w-40"
       color={'default'}
       defaultItems={[
         {
@@ -15,7 +15,7 @@ export default function SearchBar() {
           description: 'The second most popular pet in the world'
         }
       ]}
-      label="Cautati un material"
+      label="Cauta produs"
       variant="faded"
     >
       {item => (

@@ -2,14 +2,17 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 import React from 'react'
+import { ToastContainer } from 'react-toastify'
 
 import { Providers } from './providers'
 
 import Navbar from '@/components/layout/Navbar'
 import { CounterStoreProvider } from '@/providers/counter-store-provider'
 import { AuthStoreProvider } from '@/providers/auth-store-provider'
-import OptionsHeader from '@/components/layout/OptionsHeader'
 import Footer from '@/components/layout/Footer'
+import { CartStoreProvider } from '@/providers/cart-store'
+import 'react-toastify/dist/ReactToastify.css'
+import Header from '@/components/layout/Header'
 
 export const metadata: Metadata = {
   title: 'Creativ Tub',
@@ -34,26 +37,29 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          ' bg-background font-sans antialiased'
+          ' bg-background font-sans antialiased bg-gray-500 sd:px-0 px-10'
           // fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <AuthStoreProvider>
-            <div className="flex  flex-col  md:overflow-hidden ">
-              <div className="w-full flex-none  bg-gray-800">
-                <Navbar />
+            <CartStoreProvider>
+              <div className="flex  flex-col  md:overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-500">
+                <div className="w-full flex-none  bg-gray-800">
+                  <Navbar />
+                </div>
+                <div className="w-full bg-gray-800">
+                  <Header section="catalog" />
+                </div>
+                <div className="flex-grow   w-4/5 mx-auto ">
+                  <CounterStoreProvider>
+                    <Providers>{children}</Providers>
+                    <ToastContainer />
+                  </CounterStoreProvider>
+                </div>
               </div>
-              <div className="w-3/4 mx-auto bg-blue-700">
-                <OptionsHeader />
-              </div>
-              <div className="flex-grow   w-3/4 mx-auto ">
-                <CounterStoreProvider>
-                  <Providers>{children}</Providers>
-                </CounterStoreProvider>
-              </div>
-            </div>
-            <Footer />
+              <Footer />
+            </CartStoreProvider>
           </AuthStoreProvider>
         </Providers>
       </body>

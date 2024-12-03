@@ -9,6 +9,8 @@ import {
 import { Bounce, toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+import { UserIcon } from '@heroicons/react/24/outline'
+
 import { useAuthStore } from '@/providers/auth-store-provider'
 
 export default function AuthButton() {
@@ -20,10 +22,12 @@ export default function AuthButton() {
 
   return (
     <Popover placement="bottom" showArrow={true}>
-      <PopoverTrigger className={'px-1 py-2'}>
-        <Button>{user ? user.displayName : 'User'}</Button>
+      <PopoverTrigger>
+        {/*<Button>{user ? user.displayName : 'User'}</Button>*/}
+
+        <UserIcon className="w-8 hover:cursor-pointer" color={'white'} />
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className={'py-2'}>
         {user ? (
           <Button color={'danger'} onClick={logout}>
             Logout
@@ -34,7 +38,7 @@ export default function AuthButton() {
             onClick={() => {
               login().then(() => {
                 toast.success('Autentificare reusita!', {
-                  position: 'top-right',
+                  position: 'bottom-right',
                   autoClose: 5000,
                   hideProgressBar: false,
                   closeOnClick: true,
@@ -45,7 +49,6 @@ export default function AuthButton() {
                   transition: Bounce
                 })
               })
-              // notify()
             }}
           >
             Login

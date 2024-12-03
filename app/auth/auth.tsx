@@ -1,37 +1,60 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@nextui-org/react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { useAuthStore } from '@/providers/auth-store-provider'
+import { useCartStore } from '@/providers/cart-store'
 
 const Auth = () => {
   const user = useAuthStore(state => state.user)
   const login = useAuthStore(state => state.login)
   const logout = useAuthStore(state => state.logout)
   const isAdmin = useAuthStore(state => state.isAdmin)
+  const { items, addItem, removeItem, incrementItemCount, decrementItemCount } =
+    useCartStore()
+  const router = useRouter()
 
+  console.log(items)
   const adminText = isAdmin ? 'Admin' : ''
+
+  useEffect(() => {
+    // if (!user) {
+    //   router.push('/')
+    // }
+  }, [])
 
   return (
     <div>
       {user ? (
-        <div className="flex">
-          <div className={'w-2/3 p-3'}>
-            <h1 className={' text-6xl'}>
-              Bine ati venit,{adminText} {user.displayName}
+        <div className="flex justify-between">
+          <div className={'w-2/3 '}>
+            <h1 className={' text-3xl'}>
+              {adminText} {user.displayName}
             </h1>
+            <h2>{user.email}</h2>
             <Button color={'danger'} size={'sm'} onClick={logout}>
               Logout
             </Button>
           </div>
-          <div className={'w-1/3 p-3 flex justify-center'}>
+          <div className={' flex justify-center'}>
             {user?.photoURL && (
-              <img
-                alt={'profile pic'}
-                className={'rounded-full border-white border-2 '}
-                src={user.photoURL}
-              />
+              <>
+                {/*<img*/}
+                {/*  alt={'profile pic'}*/}
+                {/*  className={'rounded-full  h-fit'}*/}
+                {/*  src={user.photoURL}*/}
+                {/*/>*/}
+                <Image
+                  alt={'profile pic'}
+                  className={'rounded-full  h-fit'}
+                  height={80}
+                  src={user.photoURL}
+                  width={80}
+                />
+              </>
             )}
           </div>
         </div>

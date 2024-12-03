@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownTrigger
 } from '@nextui-org/react'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 
 interface DropdownItem {
   label: string
@@ -24,25 +25,33 @@ export const DropdownComponent = ({
   return (
     <Dropdown backdrop="transparent">
       <DropdownTrigger>
-        <Button color={'primary'} variant="shadow">
-          {name}
+        <Button
+          className={'rounded-sm bg-transparent text-gray-100 my-2'}
+          color={'primary'}
+          variant="faded "
+        >
+          <div className={'flex gap-2 '}>
+            <h1 className={'font-bold'}>{name.toUpperCase()}</h1>
+
+            <ChevronDownIcon className="h-5 w-5 text-gray-400" />
+          </div>
         </Button>
       </DropdownTrigger>
       <DropdownMenu
         aria-label="Dynamic Actions"
-        className="rounded-lg"
-        color="primary"
+        className="rounded-sm"
+        color="secondary"
         items={array}
         variant="faded"
       >
         {item => (
           <DropdownItem
             key={item.label}
-            className={'default bg-white'}
+            className={'default bg-white font-bold'}
             color={'primary'}
             href={`/${section}?category=${item.label}`}
           >
-            {item.label}
+            <h1 className={'font-bold'}>{item.label}</h1>
           </DropdownItem>
         )}
       </DropdownMenu>

@@ -10,8 +10,7 @@ const UrLparams = () => {
 
   return (
     <div>
-      <h1>Category: {category || 'Toate'}</h1>
-      <h1>Page: {page || '1'}</h1>
+      <h1>{category || 'Toate'}</h1>
     </div>
   )
 }

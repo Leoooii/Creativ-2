@@ -79,6 +79,7 @@ const AddItemForm: React.FC<AddItemProps> = () => {
       <Input
         required
         label="URL imagine"
+        maxLength={250}
         placeholder="URL imagine"
         value={imageURL}
         onChange={e => setImageURL(e.target.value)}

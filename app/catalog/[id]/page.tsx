@@ -1,4 +1,5 @@
 import { fetchMaterialById } from '@/lib/data'
+import CustomButton from '@/components/CustomButton'
 
 export default async function Page({
   params
@@ -33,7 +34,10 @@ export default async function Page({
           )}
           <h3>Categoria:`{material?.category}`</h3>
         </div>
-        <h3 className={'text-2xl'}>{material?.price} lei</h3>
+        <div>
+          <h3 className={'text-2xl'}>{material?.price} lei</h3>
+          <CustomButton id={material!.id} />
+        </div>
       </div>
       <div
         className={

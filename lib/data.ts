@@ -20,6 +20,7 @@ export async function fetchMaterials(
         SELECT * FROM Materials
         WHERE price >= ${minPrice || 0}
         AND price <= ${maxPrice || 999999}
+        ORDER BY price
    
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
       `
@@ -33,7 +34,9 @@ export async function fetchMaterials(
         WHERE price >= ${minPrice || 0}
         AND price <= ${maxPrice || 999999}
         AND category=${category}
+           ORDER BY price
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+         
       `
       count =
         await sql`SELECT COUNT(*) FROM Materials   WHERE price >= ${minPrice || 0}
@@ -204,5 +207,45 @@ export async function deleteMaterial(id: number) {
   } catch (error) {
     console.error('Failed to delete material:', error)
     throw new Error('Failed to delete material')
+  }
+}
+
+export async function addRequest(
+  items: { id: number; count: number }[],
+  message: string,
+  email: string,
+  status: string
+) {
+  try {
+    await sql`
+  INSERT INTO Request (items, message, email, status)
+  VALUES (${JSON.stringify(items)}, ${message}, ${email}, ${status});
+`
+
+    const data = await sql<Request>`SELECT * FROM Request `
+
+    // console.log(data.rows, 'baa')
+
+    return { message: 'Request added successfully', data: data.rows }
+  } catch (error) {
+    console.error('Failed to add material:', error)
+    throw new Error('Failed to add material')
+  }
+}
+
+export async function fetchRequests(email: string) {
+  try {
+    let query = sql<Request[]>`
+    SELECT * FROM Request WHERE email=${email}
+  `
+
+    const requests = await query
+
+    console.log(requests.rows.flat(), '2')
+
+    return requests.rows.flat()
+  } catch (error) {
+    console.error('Failed to fetch materials:', error)
+    throw new Error('Failed to fetch materials')
   }
 }

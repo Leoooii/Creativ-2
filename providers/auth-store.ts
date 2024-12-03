@@ -33,6 +33,8 @@ export const createAuthStore = (initState: AuthState = defaultAuthState) => {
     // Funcție pentru autentificare
     login: async () => {
       try {
+        await signOut(auth)
+
         const provider = new GoogleAuthProvider()
         const result = await signInWithPopup(auth, provider)
         const user = result.user
@@ -42,7 +44,7 @@ export const createAuthStore = (initState: AuthState = defaultAuthState) => {
           set({ isAdmin: true })
         }
       } catch (error) {
-        console.error('Login error:', error)
+        console.warn('Autentificarea a fost anulată de utilizator.', error)
       }
     },
     // Funcție pentru deconectare

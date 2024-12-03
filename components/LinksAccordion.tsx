@@ -18,7 +18,7 @@ const LinksAccordion = () => {
         key="1"
         aria-label="Accordion 1"
         className={'flex flex-col shadow-blue-950'}
-        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Metalurgice"
       >
         {Metalurgice.map(item => {
@@ -37,7 +37,7 @@ const LinksAccordion = () => {
       <AccordionItem
         key="2"
         aria-label="Accordion 2"
-        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Constructii"
       >
         {Constructii.map(item => {
@@ -56,7 +56,7 @@ const LinksAccordion = () => {
       <AccordionItem
         key="3"
         aria-label="Accordion 3"
-        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Electrice"
       >
         {Electrice.map(item => {
@@ -75,7 +75,7 @@ const LinksAccordion = () => {
       <AccordionItem
         key="4"
         aria-label="Accordion 4"
-        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Sanitare"
       >
         {Sanitare.map(item => {
@@ -94,7 +94,7 @@ const LinksAccordion = () => {
       <AccordionItem
         key="5"
         aria-label="Accordion 5"
-        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Unelte"
       >
         {Unelte.map(item => {
@@ -113,7 +113,7 @@ const LinksAccordion = () => {
       <AccordionItem
         key="6"
         aria-label="Accordion 6"
-        style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
+        style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Gradina"
       >
         {Gradina.map(item => {

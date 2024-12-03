@@ -1,21 +1,14 @@
 'use client'
 
 import React, { useState } from 'react'
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Image,
-  Input
-} from '@nextui-org/react'
+import { Card, CardBody, CardFooter, Divider, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@nextui-org/link'
 
 import { deleteMaterial, updateMaterial } from '@/lib/data'
 import { Material } from '@/lib/definitions'
 import { useAuthStore } from '@/providers/auth-store-provider'
+import CustomButton from '@/components/CustomButton'
 
 interface MaterialProps {
   material: Material
@@ -23,7 +16,6 @@ interface MaterialProps {
 }
 
 const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
-  // Inițializează starea cu valorile din material
   const [name, setName] = useState(material.name)
   const [price, setPrice] = useState(material.price)
   const [description, setDescription] = useState(material.description)
@@ -73,65 +65,74 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
 
   return (
     <Card
-      className={`border border-white rounded-md  ${!material.available && 'bg-red-500'} `}
+      className={`border border-white rounded-md 
+  ${!material.available && 'bg-red-500'} 
+  hover:bg-gradient-to-br from-blue-200 to-blue-500 
+  hover:cursor-pointer hover:text-white 
+  transition-colors duration-[4000]`}
       shadow="lg"
       style={{ boxShadow: '0px 4px 10px rgba(0, 00, 100, 50)' }}
     >
       <CardBody className="overflow-visible p-0 flex justify-center ">
-        <Link href={`/catalog/${material.id}`}>
-          <div className="flex justify-center w-full mt-2">
-            <Image
-              alt={material.name}
-              className="w-full object-fit hover:shadow-2xl"
-              radius="lg"
-              shadow="md"
-              src={material.image_url}
-              width={200}
-            />
-          </div>
+        <Link
+          className="flex justify-center w-full "
+          href={`/catalog/${material.id}`}
+        >
+          <Image
+            alt={material.name}
+            className="w-full object-fit hover:shadow-2xl  my-2 "
+            radius="lg"
+            shadow="md"
+            src={material.image_url}
+            width={200}
+          />
         </Link>
       </CardBody>
-
       <Divider />
-      <CardFooter className="text-small justify-between flex-col gap-2">
-        <Input
-          isRequired={true}
-          label="Nume"
-          readOnly={!isAdmin}
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-        />
-
-        <Input
-          label="Pret (RON) cu TVA"
-          readOnly={!isAdmin}
-          type="number"
-          value={String(price)}
-          onChange={handlePriceChange}
-        />
+      <CardFooter className="items-start justify-between flex-col text-start gap-1 ">
+        {/*<Input*/}
+        {/*  isRequired={true}*/}
+        {/*  label="Nume"*/}
+        {/*  readOnly={!isAdmin}*/}
+        {/*  type="text"*/}
+        {/*  value={name}*/}
+        {/*  onChange={handleNameChange}*/}
+        {/*/>*/}
+        <h1 className={'font-bold'}>{name}</h1>
+        <h2>{material.category}</h2>
+        <h1 className={'text-black font-bold'}>{String(price)} lei</h1>
+        {/*<Input*/}
+        {/*  label="Pret (RON) cu TVA"*/}
+        {/*  readOnly={!isAdmin}*/}
+        {/*  type="number"*/}
+        {/*  value={String(price)}*/}
+        {/*  onChange={handlePriceChange}*/}
+        {/*/>*/}
       </CardFooter>
-      {isAdmin && (
-        <CardFooter className="text-small justify-between">
-          <Button
-            className="text-white px-3 py-1 rounded-lg  hover:border hover:border-cyan-400"
-            color="warning"
-            size="sm"
-            onClick={handleEdit}
-          >
-            Editeaza
-          </Button>
-          {/*<Switch isSelected={available} onValueChange={setAvailable} />*/}
-          <Button
-            className=" px-3 py-1 rounded-lg hover:text-white hover:border hover:border-cyan-400"
-            color="danger"
-            size="sm"
-            onClick={handleDelete}
-          >
-            Sterge
-          </Button>
-        </CardFooter>
-      )}
+      {/*{isAdmin && (*/}
+      {/*  <CardFooter className="text-small justify-between">*/}
+      {/*    <Button*/}
+      {/*      className="text-white px-3 py-1 rounded-lg  hover:border hover:border-cyan-400"*/}
+      {/*      color="warning"*/}
+      {/*      size="sm"*/}
+      {/*      onClick={handleEdit}*/}
+      {/*    >*/}
+      {/*      Editeaza*/}
+      {/*    </Button>*/}
+      {/*    /!*<Switch isSelected={available} onValueChange={setAvailable} />*!/*/}
+      {/*    <Button*/}
+      {/*      className=" px-3 py-1 rounded-lg hover:text-white hover:border hover:border-cyan-400"*/}
+      {/*      color="danger"*/}
+      {/*      size="sm"*/}
+      {/*      onClick={handleDelete}*/}
+      {/*    >*/}
+      {/*      Sterge*/}
+      {/*    </Button>*/}
+      {/*  </CardFooter>*/}
+      {/*)}*/}
+      <div className={'m-1'}>
+        <CustomButton id={material!.id} />
+      </div>
     </Card>
   )
 }

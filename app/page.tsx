@@ -1,35 +1,43 @@
 'use client'
 
-import Image from 'next/image'
 import React from 'react'
 
 import ResponsiveCarousel from '@/components/Carousel'
 import AboutUs from '@/components/AboutUs'
-import LinksAccordion from '@/components/LinksAccordion'
+import MotionImage from '@/components/MotionImage'
 
 export default function Home() {
   return (
     <div className="container mx-auto  h-full flex flex-col gap-10 ">
-      <div className="flex mt-2">
-        <div className={`w-1/3`}>
-          <LinksAccordion />
-        </div>
-        <div className={'w-2/3 flex p-2 '}>
+      <div className="flex mt-5 gap-10 justify-end">
+        {/*<div className={`w-1/3`}>*/}
+        {/*  <LinksAccordion />*/}
+        {/*</div>*/}
+
+        <div className={'w-full flex p-2'}>
           <ResponsiveCarousel />
         </div>
       </div>
-
+      <hr className="border-blue-800" />
       <AboutUs />
-
-      <div className="flex justify-center">
-        <Image
-          alt="worker"
-          className=" rounded-xl w-1/2"
-          height={3072}
-          src={'/images/work.jpg'}
-          width={4608}
+      <hr className="border-blue-800" />
+      <div className="flex justify-between gap-5">
+        {/*<Image*/}
+        {/*  alt="worker"*/}
+        {/*  className=" rounded-xl w-1/2 shadow-lg"*/}
+        {/*  height={3072}*/}
+        {/*  src={'/images/work.jpg'}*/}
+        {/*  style={{ boxShadow: '0px 5px 5px rgba(220, 210, 250, 250)' }}*/}
+        {/*  width={4608}*/}
+        {/*/>*/}
+        <MotionImage alt={'muncitor'} left={true} src={'/images/work.jpg'} />
+        <MotionImage
+          alt={'building'}
+          left={false}
+          src={'/images/creativbuilding.jpg'}
         />
       </div>
+      <hr className="border-blue-800" />
       <div
         className="h-full grid grid-cols-2 bg-gray-100 p-5"
         style={{ boxShadow: '0px 4px 10px rgba(100, 100, 200, 150)' }}
