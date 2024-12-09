@@ -11,7 +11,10 @@ const Footer = () => {
             </h2>
             <ul>
               <li>
-                <a className="text-gray-400 hover:text-white" href="#">
+                <a
+                  className="text-gray-400 hover:text-white"
+                  href="https://anpc.ro/"
+                >
                   Livrari si Retururi
                 </a>
               </li>

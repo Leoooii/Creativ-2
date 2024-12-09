@@ -81,10 +81,10 @@
             "position": "after"
           }
         ],
-        "newlines-between": "always"
+        "newlines-between": "never"
       }
     ],
-    "react/self-closing-comp": "warn",
+    "react/self-closing-comp": "off",
     "react/jsx-sort-props": [
       "off",
       {

@@ -8,12 +8,8 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { Link } from '@nextui-org/link'
 
-interface DropdownItem {
-  label: string
-}
-
 interface DropdownComponentProps {
-  array: DropdownItem[] // Array de obiecte de tip DropdownItem
+  array: { label: string }[] // Array de obiecte de tip DropdownItem
   name: string
   section: string
 }
