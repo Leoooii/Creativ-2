@@ -9,30 +9,49 @@ import { addRequest, deleteRequest, fetchRequests } from '@/lib/data'
 import { useAuthStore } from '@/providers/auth-store-provider'
 import AdminAnswer from '@/components/forms/adminAnswer'
 
-type Request = {
-  id: number
-  items: { id: string; count: number }[]
-  message: string
-  email: string
-  status: string
-  answer?: string
-}
+// type Request = {
+//   id: number
+//   items: { id: string; count: number }[]
+//   message: string
+//   email: string
+//   status: string
+//   answer?: string
+// }
 
 const CartItems = () => {
   const { items } = useCartStore()
   const user = useAuthStore((state) => state.user)
   const isAdmin = useAuthStore((state) => state.isAdmin)
-  const [requests, setRequests] = useState<Request[] | null>(null)
+  const [requests, setRequests] = useState<
+    | {
+        id: number
+        items: { id: number; count: number }[]
+        message: string
+        email: string
+        status: string
+        answer?: string
+      }[]
+    | null
+  >(null)
   const [requestMessage, setRequestMessage] = useState('')
 
   const fetchData = async () => {
+    let data: {
+      id: number
+      items: { id: number; count: number }[]
+      message: string
+      email: string
+      status: string
+      answer?: string
+    }[]
+
     try {
       if (isAdmin) {
-        let data: Request[] = await fetchRequests(user.email!, 'all')
+        data = await fetchRequests(user!.email!, 'all')
 
         setRequests(data)
       } else if (user?.email) {
-        let data: Request[] = await fetchRequests(user.email)
+        data = await fetchRequests(user.email)
 
         setRequests(data)
       }
@@ -41,7 +60,7 @@ const CartItems = () => {
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     const { message, data } = await addRequest(
       // [{ id: 7, count: 10 }]
       items,
@@ -102,37 +121,48 @@ const CartItems = () => {
         )}
         {requests &&
           Array.isArray(requests) &&
-          requests.map((request: Request) => (
-            <div
-              key={request.id}
-              className={
-                'bg-gray-800 mb-3 p-2 flex flex-col gap-2 text-white rounded-md'
-              }
-            >
-              <div className={'flex justify-between'}>
-                <h1>{request.message}</h1>
-                <h2>{request.email}</h2>
-              </div>
-              {request.items.map((item) => {
-                return <CartItem key={item.id} isEditable={false} item={item} />
-              })}
-              <h1>{request.answer}</h1>
-              {isAdmin && !request.answer && (
-                <AdminAnswer fetchData={fetchData} id={request.id} />
-              )}
-              <Button
-                color={'danger'}
-                variant={'ghost'}
-                onClick={() => {
-                  deleteRequest(request.id).then(() => {
-                    fetchData()
-                  })
-                }}
+          requests.map(
+            (request: {
+              id: number
+              items: { id: number; count: number }[]
+              message: string
+              email: string
+              status: string
+              answer?: string
+            }) => (
+              <div
+                key={request.id}
+                className={
+                  'bg-gray-800 mb-3 p-2 flex flex-col gap-2 text-white rounded-md'
+                }
               >
-                Sterge
-              </Button>
-            </div>
-          ))}
+                <div className={'flex justify-between'}>
+                  <h1>{request.message}</h1>
+                  <h2>{request.email}</h2>
+                </div>
+                {request.items.map((item) => {
+                  return (
+                    <CartItem key={item.id} isEditable={false} item={item} />
+                  )
+                })}
+                <h1>{request.answer}</h1>
+                {isAdmin && !request.answer && (
+                  <AdminAnswer fetchData={fetchData} id={request.id} />
+                )}
+                <Button
+                  color={'danger'}
+                  variant={'ghost'}
+                  onClick={() => {
+                    deleteRequest(request.id).then(() => {
+                      fetchData()
+                    })
+                  }}
+                >
+                  Sterge
+                </Button>
+              </div>
+            )
+          )}
       </div>
     </div>
   )

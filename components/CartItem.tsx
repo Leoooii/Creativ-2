@@ -9,7 +9,7 @@ import { Material } from '@/lib/definitions'
 
 interface CartItemProps {
   item: {
-    id: number | string
+    id: number
     count: number
   }
   isEditable: boolean

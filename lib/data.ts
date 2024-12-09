@@ -254,18 +254,45 @@ export async function fetchRequests(email: string, filter?: string) {
 
     switch (filter) {
       case 'all':
-        query = sql<Request[]>`
+        query = sql<
+          {
+            id: number
+            items: { id: number; count: number }[]
+            message: string
+            email: string
+            status: string
+            answer?: string
+          }[]
+        >`
     SELECT * FROM Request 
   `
         break
       case 'pending':
-        query = sql<Request[]>`
+        query = sql<
+          {
+            id: number
+            items: { id: number; count: number }[]
+            message: string
+            email: string
+            status: string
+            answer?: string
+          }[]
+        >`
     SELECT * FROM Request WHERE status='pending'
   `
         break
 
       default:
-        query = sql<Request[]>`
+        query = sql<
+          {
+            id: number
+            items: { id: string; count: number }[]
+            message: string
+            email: string
+            status: string
+            answer?: string
+          }[]
+        >`
     SELECT * FROM Request WHERE email=${email}
   `
     }
