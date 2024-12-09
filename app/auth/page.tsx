@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { ShoppingCartIcon } from '@heroicons/react/20/solid'
 
-import Auth from './auth'
+import Auth from '../../components/auth'
 
 import CartItems from '@/components/CartItems'
 
