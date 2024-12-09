@@ -1,82 +1,82 @@
-"use client";
+'use client'
 
-import { Button, Input } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { Button, Input } from '@nextui-org/react'
+import { useEffect, useState } from 'react'
 
-import { useCartStore } from "@/providers/cart-store";
-import CartItem from "@/components/CartItem";
-import { addRequest, deleteRequest, fetchRequests } from "@/lib/data";
-import { useAuthStore } from "@/providers/auth-store-provider";
-import AdminAnswer from "@/components/forms/adminAnswer";
+import { useCartStore } from '@/providers/cart-store'
+import CartItem from '@/components/CartItem'
+import { addRequest, deleteRequest, fetchRequests } from '@/lib/data'
+import { useAuthStore } from '@/providers/auth-store-provider'
+import AdminAnswer from '@/components/forms/adminAnswer'
 
 type Request = {
-  id: number;
-  items: { id: string; count: number }[];
-  message: string;
-  email: string;
-  status: string;
-  answer?: string;
-};
+  id: number
+  items: { id: string; count: number }[]
+  message: string
+  email: string
+  status: string
+  answer?: string
+}
 
 const CartItems = () => {
-  const { items } = useCartStore();
-  const user = useAuthStore(state => state.user);
-  const isAdmin = useAuthStore(state => state.isAdmin);
-  const [requests, setRequests] = useState<Request[] | null>(null);
-  const [requestMessage, setRequestMessage] = useState("");
+  const { items } = useCartStore()
+  const user = useAuthStore((state) => state.user)
+  const isAdmin = useAuthStore((state) => state.isAdmin)
+  const [requests, setRequests] = useState<Request[] | null>(null)
+  const [requestMessage, setRequestMessage] = useState('')
 
   const fetchData = async () => {
     try {
       if (isAdmin) {
-        let data: Request[] = await fetchRequests(user.email!, "all");
+        let data: Request[] = await fetchRequests(user.email!, 'all')
 
-        setRequests(data);
+        setRequests(data)
       } else if (user?.email) {
-        let data: Request[] = await fetchRequests(user.email);
+        let data: Request[] = await fetchRequests(user.email)
 
-        setRequests(data);
+        setRequests(data)
       }
     } catch (error) {
-      console.error("Failed to fetch requests:", error);
+      console.error('Failed to fetch requests:', error)
     }
-  };
+  }
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     const { message, data } = await addRequest(
       // [{ id: 7, count: 10 }]
       items,
       requestMessage,
-      user?.email || "",
-      "trimis"
-    );
+      user?.email || '',
+      'trimis'
+    )
 
-    alert(message);
-    await fetchData();
-  };
+    alert(message)
+    await fetchData()
+  }
 
   useEffect(() => {
-    fetchData();
-  }, [user]);
+    fetchData()
+  }, [user])
 
   return (
-    <div className={"p-3 flex flex-col gap-1 mt-5"}>
-      {items.map(item => (
+    <div className={'p-3 flex flex-col gap-1 mt-5'}>
+      {items.map((item) => (
         <CartItem key={item.id} isEditable={true} item={item} />
       ))}
       {items.length > 0 ? (
         <div>
           <Input
-            className={"my-2"}
-            color={"primary"}
-            placeholder={"Introduceti un mesaj"}
-            type={"text"}
+            className={'my-2'}
+            color={'primary'}
+            placeholder={'Introduceti un mesaj'}
+            type={'text'}
             value={requestMessage}
-            onChange={e => setRequestMessage(e.target.value)}
+            onChange={(e) => setRequestMessage(e.target.value)}
           />
 
           <Button
-            className={"mt-5"}
-            color={"primary"}
+            className={'mt-5'}
+            color={'primary'}
             isDisabled={!user}
             onClick={handleSubmit}
           >
@@ -94,9 +94,9 @@ const CartItems = () => {
           a putea trimite o cerere de oferta
         </h1>
       )}
-      <div className={"mt-2 "}>
+      <div className={'mt-2 '}>
         {requests && (
-          <h1 className={"text-center m-3 font-extrabold text-2xl"}>
+          <h1 className={'text-center m-3 font-extrabold text-2xl'}>
             Istoric cereri
           </h1>
         )}
@@ -106,29 +106,27 @@ const CartItems = () => {
             <div
               key={request.id}
               className={
-                "bg-gray-800 mb-3 p-2 flex flex-col gap-2 text-white rounded-md"
+                'bg-gray-800 mb-3 p-2 flex flex-col gap-2 text-white rounded-md'
               }
             >
-              <div className={"flex justify-between"}>
+              <div className={'flex justify-between'}>
                 <h1>{request.message}</h1>
                 <h2>{request.email}</h2>
               </div>
-              {request.items.map(item => {
-                return (
-                  <CartItem key={item.id} isEditable={false} item={item} />
-                );
+              {request.items.map((item) => {
+                return <CartItem key={item.id} isEditable={false} item={item} />
               })}
               <h1>{request.answer}</h1>
               {isAdmin && !request.answer && (
                 <AdminAnswer fetchData={fetchData} id={request.id} />
               )}
               <Button
-                color={"danger"}
-                variant={"ghost"}
+                color={'danger'}
+                variant={'ghost'}
                 onClick={() => {
                   deleteRequest(request.id).then(() => {
-                    fetchData();
-                  });
+                    fetchData()
+                  })
                 }}
               >
                 Sterge
@@ -137,7 +135,7 @@ const CartItems = () => {
           ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItems;
+export default CartItems

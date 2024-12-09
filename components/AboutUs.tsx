@@ -1,18 +1,18 @@
-import { CheckCircleIcon } from "@heroicons/react/16/solid";
+import { CheckCircleIcon } from '@heroicons/react/16/solid'
 
 const list = [
   {
     description:
-      'Suntem unul dintre marii furnizori de materiale pentru constructii si instalatii, din Romania, care furnizeaza materiale pentru constructii “la cheie".'
+      'Suntem unul dintre marii furnizori de materiale pentru constructii si instalatii, din Romania, care furnizeaza materiale pentru constructii “la cheie".',
   },
   {
     description:
-      "Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp."
+      'Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp.',
   },
   {
     description:
-      "Experienta, profesionalismul si seriozitatea ne caracterizeaza activitatea de peste patru decenii."
-  }
+      'Experienta, profesionalismul si seriozitatea ne caracterizeaza activitatea de peste patru decenii.',
+  },
   // {
   //   description:
   //     'Specialistii nostri va ofera consultanta tehnica si economica in legatura cu toate materialele si solutiile constructive utilizate actualmente.',
@@ -24,12 +24,12 @@ const list = [
   // {
   //   description: 'Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp.',
   // },
-];
+]
 
 export default function AboutUs() {
   return (
     <div className={` grid md:grid-cols-3 grid-cols-1  gap-10`}>
-      {list.map(item => {
+      {list.map((item) => {
         return (
           <div
             key={item.description}
@@ -41,8 +41,8 @@ export default function AboutUs() {
 
             <h1 className="flex-1">{item.description}</h1>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }

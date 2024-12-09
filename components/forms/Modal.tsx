@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Button,
@@ -7,18 +7,18 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  useDisclosure
-} from "@nextui-org/react";
-import React from "react";
+  useDisclosure,
+} from '@nextui-org/react'
+import React from 'react'
 
-import AddItemForm from "@/components/forms/AddItemForm";
+import AddItemForm from '@/components/forms/AddItemForm'
 
 interface ModalProps {
-  onSubmit: () => void;
+  onSubmit: () => void
 }
 
 const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
   return (
     <>
@@ -35,23 +35,23 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
               opacity: 1,
               transition: {
                 duration: 0.6,
-                ease: "circOut"
-              }
+                ease: 'circOut',
+              },
             },
             exit: {
               y: 20,
               opacity: 0,
               transition: {
                 duration: 0.2,
-                ease: "easeIn"
-              }
-            }
-          }
+                ease: 'easeIn',
+              },
+            },
+          },
         }}
         onOpenChange={onOpenChange}
       >
         <ModalContent>
-          {onClose => (
+          {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 Adaugare item
@@ -69,7 +69,7 @@ const ModalComponent: React.FC<ModalProps> = ({ onSubmit }) => {
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default ModalComponent;
+export default ModalComponent

@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Button,
@@ -7,24 +7,24 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  useDisclosure
-} from "@nextui-org/react";
-import React, { ReactNode } from "react";
+  useDisclosure,
+} from '@nextui-org/react'
+import React, { ReactNode } from 'react'
 
 interface ModalProps {
-  buttonName: string;
-  header: string;
+  buttonName: string
+  header: string
 
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 const ModalComponent: React.FC<ModalProps> = ({
   buttonName,
   header,
 
-  children
+  children,
 }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
   return (
     <>
@@ -41,23 +41,23 @@ const ModalComponent: React.FC<ModalProps> = ({
               opacity: 1,
               transition: {
                 duration: 0.6,
-                ease: "circOut"
-              }
+                ease: 'circOut',
+              },
             },
             exit: {
               y: 20,
               opacity: 0,
               transition: {
                 duration: 0.2,
-                ease: "easeIn"
-              }
-            }
-          }
+                ease: 'easeIn',
+              },
+            },
+          },
         }}
         onOpenChange={onOpenChange}
       >
         <ModalContent>
-          {onClose => (
+          {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 {header}
@@ -73,7 +73,7 @@ const ModalComponent: React.FC<ModalProps> = ({
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default ModalComponent;
+export default ModalComponent

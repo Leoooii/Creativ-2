@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function CreativLogo() {
   return (
@@ -7,9 +7,9 @@ export default function CreativLogo() {
       <Image
         alt="creativ-logo"
         height={200}
-        src={"/images/logo.png"}
+        src={'/images/logo.png'}
         width={200}
       />
     </div>
-  );
+  )
 }

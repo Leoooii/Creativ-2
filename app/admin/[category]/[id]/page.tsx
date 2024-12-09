@@ -1,16 +1,16 @@
 export default async function Page({
-  params
+  params,
 }: {
-  params: Promise<{ category: string; id: string }>;
+  params: Promise<{ category: string; id: string }>
 }) {
-  const category = (await params).category;
-  const id = (await params)?.id;
+  const category = (await params).category
+  const id = (await params)?.id
 
-  console.log("hei");
+  console.log('hei')
 
   return (
     <div>
       Categoria {category} cu id: {id}
     </div>
-  );
+  )
 }

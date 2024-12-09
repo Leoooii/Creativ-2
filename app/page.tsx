@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 
-import ResponsiveCarousel from "@/components/Carousel";
-import AboutUs from "@/components/AboutUs";
-import MotionImage from "@/components/MotionImage";
+import ResponsiveCarousel from '@/components/Carousel'
+import AboutUs from '@/components/AboutUs'
+import MotionImage from '@/components/MotionImage'
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
         {/*  <LinksAccordion />*/}
         {/*</div>*/}
 
-        <div className={"w-full flex p-2"}>
+        <div className={'w-full flex p-2'}>
           <ResponsiveCarousel />
         </div>
       </div>
@@ -22,23 +22,23 @@ export default function Home() {
       <AboutUs />
       <hr className="border-blue-800" />
       <div className="flex flex-col justify-center  sm:flex-row sm:justify-between gap-5">
-        <MotionImage alt={"muncitor"} left={true} src={"/images/work.jpg"} />
+        <MotionImage alt={'muncitor'} left={true} src={'/images/work.jpg'} />
         <MotionImage
-          alt={"building"}
+          alt={'building'}
           left={false}
-          src={"/images/creativbuilding.jpg"}
+          src={'/images/creativbuilding.jpg'}
         />
       </div>
       <hr className="border-blue-800" />
       <div
         className="h-full grid grid-cols-2 bg-gray-100 p-5"
-        style={{ boxShadow: "0px 4px 10px rgba(100, 100, 200, 150)" }}
+        style={{ boxShadow: '0px 4px 10px rgba(100, 100, 200, 150)' }}
       >
         <div>
           <h1 className="font-bold font-sans mb-3">PROGRAM DE LUCRU</h1>
           <hr />
           <div className="flex flex-col justify-center  p-6 gap-2">
-            {" "}
+            {' '}
             <div className="flex">
               <h1 className=" font-semibold">Luni-Vineri:</h1>
               <h1 className="text-green-500 ml-1"> 8:00-16:00</h1>
@@ -64,12 +64,12 @@ export default function Home() {
             border: 0,
             borderRadius: 10,
             height: 250,
-            boxShadow: "0px 4px 10px rgba(0, 100, 200, 50)"
+            boxShadow: '0px 4px 10px rgba(0, 100, 200, 50)',
           }}
           title="location"
           width="100%"
         />
       </div>
     </div>
-  );
+  )
 }

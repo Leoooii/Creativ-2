@@ -1,94 +1,94 @@
-"use client";
-import React, { Suspense, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { onAuthStateChanged, User } from "@firebase/auth";
-import { useDebounce } from "use-debounce";
-import { Button, Slider } from "@nextui-org/react";
+'use client'
+import React, { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { onAuthStateChanged, User } from '@firebase/auth'
+import { useDebounce } from 'use-debounce'
+import { Button, Slider } from '@nextui-org/react'
 
-import { InvoicesTableSkeleton } from "@/components/ui/skeletons";
-import PaginationComponent from "@/components/layout/pagination";
-import AutocompleteComponent from "@/components/forms/Autocomplete";
-import ModalComponent from "@/components/forms/Modal";
-import MaterialList from "@/components/MaterialsList";
-import { fetchCategories, fetchMaterials } from "@/lib/data";
-import { Category, Material } from "@/lib/definitions";
-import { auth, signIn, signOut } from "@/lib/firebase";
-import Header from "@/components/layout/Header";
+import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
+import PaginationComponent from '@/components/layout/pagination'
+import AutocompleteComponent from '@/components/forms/Autocomplete'
+import ModalComponent from '@/components/forms/Modal'
+import MaterialList from '@/components/MaterialsList'
+import { fetchCategories, fetchMaterials } from '@/lib/data'
+import { Category, Material } from '@/lib/definitions'
+import { auth, signIn, signOut } from '@/lib/firebase'
+import Header from '@/components/layout/Header'
 
 const AdminPage = () => {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
-  const [materials, setMaterials] = useState<Material[]>([]); // Starea pentru lista de materiale
-  const [value, setValue] = useState([0, 300]);
-  const [debouncedValue] = useDebounce(value, 500);
-  const [numberOfItems, setNumberOfItems] = useState(0);
-  const [page, setPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState(1);
-  const searchParams = useSearchParams();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [category, setCategory] = useState("Constructii");
+  const [isAuthorized, setIsAuthorized] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
+  const router = useRouter()
+  const [materials, setMaterials] = useState<Material[]>([]) // Starea pentru lista de materiale
+  const [value, setValue] = useState([0, 300])
+  const [debouncedValue] = useDebounce(value, 500)
+  const [numberOfItems, setNumberOfItems] = useState(0)
+  const [page, setPage] = useState(1)
+  const [numberOfPages, setNumberOfPages] = useState(1)
+  const searchParams = useSearchParams()
+  const [categories, setCategories] = useState<Category[]>([])
+  const [category, setCategory] = useState('Constructii')
 
   const loadMaterials = async () => {
     const { materialsData, totalPages } = await fetchMaterials(
       page,
       debouncedValue[0],
       debouncedValue[1]
-    );
+    )
 
-    setNumberOfPages(totalPages);
-    setMaterials(materialsData);
-    setNumberOfItems(materialsData.length);
-  };
+    setNumberOfPages(totalPages)
+    setMaterials(materialsData)
+    setNumberOfItems(materialsData.length)
+  }
 
   const handleLogin = async () => {
     try {
-      const response = await signIn(); // Aici apelezi funcția de login
+      const response = await signIn() // Aici apelezi funcția de login
 
       if (response) {
-        setIsAuthorized(true);
-        setUser(response);
+        setIsAuthorized(true)
+        setUser(response)
       }
     } catch (error) {
-      console.error("Login error:", error);
+      console.error('Login error:', error)
     }
-  };
+  }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setIsAuthorized(true);
-        setUser(user);
-        loadMaterials(); // Aici poți încărca materialele după autentificare, dacă este necesar
+        setIsAuthorized(true)
+        setUser(user)
+        loadMaterials() // Aici poți încărca materialele după autentificare, dacă este necesar
       } else {
-        setIsAuthorized(false);
-        setUser(null);
+        setIsAuthorized(false)
+        setUser(null)
       }
-    });
+    })
 
     const loadCategories = async () => {
       try {
-        const fetchedCategories = await fetchCategories(); // Fetch categories din backend
+        const fetchedCategories = await fetchCategories() // Fetch categories din backend
 
-        setCategories(fetchedCategories); // Setează categoriile
+        setCategories(fetchedCategories) // Setează categoriile
       } catch (error) {
-        console.error("Failed to fetch categories", error);
+        console.error('Failed to fetch categories', error)
       }
-    };
+    }
 
-    loadCategories();
+    loadCategories()
 
-    return () => unsubscribe(); // Cleanup
-  }, [debouncedValue, page]); // Execută o singură dată la montare
+    return () => unsubscribe() // Cleanup
+  }, [debouncedValue, page]) // Execută o singură dată la montare
 
   const handleCategory = async (category: string): Promise<void> => {
-    setCategory(category);
-    router.push(`/admin/${category}`);
-  };
+    setCategory(category)
+    router.push(`/admin/${category}`)
+  }
 
   return (
     <div>
-      <Header section={"admin"} />
+      <Header section={'admin'} />
       <div className="flex p-3 justify-between h-screen">
         <div className="w-4/5 overflow-y-auto h-full ">
           <Suspense fallback={<InvoicesTableSkeleton />}>
@@ -99,7 +99,7 @@ const AdminPage = () => {
           )}
         </div>
         <div className="w-1/4 flex flex-col gap-2 right-0 border-l-4 p-3 sticky top-0 h-full">
-          <h1 className={"text-center"}>
+          <h1 className={'text-center'}>
             Welcome Admin <br />
             {user?.displayName}
           </h1>
@@ -115,7 +115,7 @@ const AdminPage = () => {
           <>
             <Slider
               className="max-w-md"
-              formatOptions={{ style: "currency", currency: "LEI" }}
+              formatOptions={{ style: 'currency', currency: 'LEI' }}
               label="Interval pret"
               maxValue={300}
               minValue={0}
@@ -128,18 +128,18 @@ const AdminPage = () => {
           </>
           <AutocompleteComponent
             categories={categories}
-            defaultValue={""}
+            defaultValue={''}
             setCategory={handleCategory}
           />
 
           <ModalComponent onSubmit={loadMaterials} />
-          <Button color={"danger"} onClick={signOut}>
+          <Button color={'danger'} onClick={signOut}>
             Delogare
           </Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminPage;
+export default AdminPage

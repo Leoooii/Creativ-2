@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BookOpenIcon } from "@heroicons/react/24/outline"; // Map of links to display in the side navigation.
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { BookOpenIcon } from '@heroicons/react/24/outline' // Map of links to display in the side navigation.
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -16,16 +16,16 @@ const links = [
   // { name: 'Catalog', href: '/catalog', icon: PowerIcon },
   // { name: 'Contul meu', href: '/auth', icon: UserIcon },
   // { name: 'Cos', href: '/admin', icon: ShoppingCartIcon },
-  { name: "", href: "/catalog", icon: BookOpenIcon }
-];
+  { name: '', href: '/catalog', icon: BookOpenIcon },
+]
 
 export default function NavLinks() {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <>
-      {links.map(link => {
-        const LinkIcon = link.icon;
+      {links.map((link) => {
+        const LinkIcon = link.icon
 
         return (
           <Link
@@ -38,11 +38,11 @@ export default function NavLinks() {
             // )}
             href={link.href}
           >
-            <LinkIcon className="w-8" color={"white"} />
+            <LinkIcon className="w-8" color={'white'} />
             <p className="hidden md:block">{link.name}</p>
           </Link>
-        );
+        )
       })}
     </>
-  );
+  )
 }
