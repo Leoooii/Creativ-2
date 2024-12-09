@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from '@heroicons/react/16/solid'
+import { CheckCircleIcon } from "@heroicons/react/16/solid";
 
 const list = [
   {
@@ -7,11 +7,11 @@ const list = [
   },
   {
     description:
-      'Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp.'
+      "Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp."
   },
   {
     description:
-      'Experienta, profesionalismul si seriozitatea ne caracterizeaza activitatea de peste patru decenii.'
+      "Experienta, profesionalismul si seriozitatea ne caracterizeaza activitatea de peste patru decenii."
   }
   // {
   //   description:
@@ -24,7 +24,7 @@ const list = [
   // {
   //   description: 'Logistica noastra asigura santierului dumeavoastra toate materialele, intotdeauna, la timp.',
   // },
-]
+];
 
 export default function AboutUs() {
   return (
@@ -41,8 +41,8 @@ export default function AboutUs() {
 
             <h1 className="flex-1">{item.description}</h1>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

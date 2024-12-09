@@ -1,12 +1,12 @@
 // /components/MaterialList.tsx
-import React from 'react'
+import React from "react";
 
-import MaterialCard from '@/components/MaterialCard'
-import { Material } from '@/lib/definitions'
+import MaterialCard from "@/components/MaterialCard";
+import { Material } from "@/lib/definitions";
 
 interface MaterialListProps {
-  materials: Material[]
-  loadMaterials: () => Promise<void>
+  materials: Material[];
+  loadMaterials: () => Promise<void>;
 }
 
 const MaterialList: React.FC<MaterialListProps> = ({
@@ -23,7 +23,7 @@ const MaterialList: React.FC<MaterialListProps> = ({
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default MaterialList
+export default MaterialList;

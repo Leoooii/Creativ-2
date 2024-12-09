@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/react'
+import React, { useState } from "react";
+import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
 
 import {
   Constructii,
@@ -10,12 +10,12 @@ import {
   Metalurgice,
   Sanitare,
   Unelte
-} from '../../public/data/DummyData'
+} from "../../public/data/DummyData";
 
-import { DropdownComponent } from '@/components/Dropdown'
+import { DropdownComponent } from "@/components/Dropdown";
 
 const Header = ({ section }: { section: string }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Navbar
@@ -70,7 +70,7 @@ const Header = ({ section }: { section: string }) => {
       {/*  <div>hei</div>*/}
       {/*</NavbarMenu>*/}
     </Navbar>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

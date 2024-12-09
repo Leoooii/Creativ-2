@@ -1,46 +1,46 @@
-'use client'
+"use client";
 
-import { Autocomplete, AutocompleteItem } from '@nextui-org/react'
-import { useEffect, useState } from 'react'
-import { Link } from '@nextui-org/link'
-import { useRouter } from 'next/navigation'
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import { Link } from "@nextui-org/link";
+import { useRouter } from "next/navigation";
 
-import { fetchMaterialByFilter } from '@/lib/data'
+import { fetchMaterialByFilter } from "@/lib/data";
 
 export default function SearchBar() {
   const [searchItems, setSearchItems] = useState([
     {
-      name: 'Leo',
-      id: ''
+      name: "Leo",
+      id: ""
     }
-  ])
-  const router = useRouter()
+  ]);
+  const router = useRouter();
 
   const fetchMaterial = async value => {
-    const result = await fetchMaterialByFilter(value)
+    const result = await fetchMaterialByFilter(value);
 
-    setSearchItems(result)
-    console.log(result, '2')
+    setSearchItems(result);
+    console.log(result, "2");
     // if (result != null) console.log(result, 'vopsa')
-  }
+  };
 
   useEffect(() => {
-    fetchMaterial('')
-  }, [])
+    fetchMaterial("");
+  }, []);
 
   const onInputChange = (value: string) => {
-    fetchMaterial(value)
-  }
+    fetchMaterial(value);
+  };
 
   const onSelectionChange = id => {
-    router.push(`/catalog/${id}`)
-  }
+    router.push(`/catalog/${id}`);
+  };
 
   return (
     <Autocomplete
       allowsCustomValue
       className="max-w-xs w-40"
-      color={'default'}
+      color={"default"}
       defaultItems={searchItems}
       label="Cauta produs"
       variant="faded"
@@ -53,5 +53,5 @@ export default function SearchBar() {
         </AutocompleteItem>
       )}
     </Autocomplete>
-  )
+  );
 }

@@ -1,36 +1,36 @@
-import { useEffect, useState } from 'react'
-import { Button } from '@nextui-org/react'
-import Link from 'next/link'
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/20/solid'
+import { useEffect, useState } from "react";
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
 
-import { fetchMaterialById } from '@/lib/data'
-import { useCartStore } from '@/providers/cart-store'
-import { Material } from '@/lib/definitions'
+import { fetchMaterialById } from "@/lib/data";
+import { useCartStore } from "@/providers/cart-store";
+import { Material } from "@/lib/definitions";
 
 interface CartItemProps {
   item: {
-    id: number | string
-    count: number
-  }
-  isEditable: boolean
+    id: number | string;
+    count: number;
+  };
+  isEditable: boolean;
 }
 
 const CartItem = ({ item, isEditable }: CartItemProps) => {
-  const [material, setMaterial] = useState<Material>()
-  const { incrementItemCount, decrementItemCount, removeItem } = useCartStore()
+  const [material, setMaterial] = useState<Material>();
+  const { incrementItemCount, decrementItemCount, removeItem } = useCartStore();
 
   useEffect(() => {
     const fetchMaterial = async () => {
-      const result = await fetchMaterialById(item.id.toString())
+      const result = await fetchMaterialById(item.id.toString());
 
-      if (result != null) setMaterial(result)
-    }
+      if (result != null) setMaterial(result);
+    };
 
-    fetchMaterial()
-  }, [item.id])
+    fetchMaterial();
+  }, [item.id]);
 
   if (!material) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -41,8 +41,8 @@ const CartItem = ({ item, isEditable }: CartItemProps) => {
           href={`/catalog/${material.id}`}
         >
           <img
-            alt={'itemImage'}
-            className={'rounded-md'}
+            alt={"itemImage"}
+            className={"rounded-md"}
             height={50}
             src={material.image_url}
             width={50}
@@ -51,29 +51,29 @@ const CartItem = ({ item, isEditable }: CartItemProps) => {
         <h3>{material.name}</h3>
         <p>{material.price} lei</p>
       </div>
-      <div className={'flex items-center justify-center gap-2'}>
+      <div className={"flex items-center justify-center gap-2"}>
         {isEditable && (
           <Button
-            color={'danger'}
-            size={'sm'}
+            color={"danger"}
+            size={"sm"}
             onClick={() => {
               if (item.count > 1) {
-                decrementItemCount(item.id)
+                decrementItemCount(item.id);
               } else {
-                removeItem(item.id)
+                removeItem(item.id);
               }
             }}
           >
             <MinusCircleIcon />
           </Button>
         )}
-        <p className={'text-xl font-bold text-white'}>{item.count} buc</p>
+        <p className={"text-xl font-bold text-white"}>{item.count} buc</p>
         {isEditable && (
           <Button
-            color={'secondary'}
-            size={'sm'}
+            color={"secondary"}
+            size={"sm"}
             onClick={() => {
-              incrementItemCount(item.id)
+              incrementItemCount(item.id);
             }}
           >
             <PlusCircleIcon />
@@ -81,7 +81,7 @@ const CartItem = ({ item, isEditable }: CartItemProps) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;

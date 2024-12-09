@@ -1,19 +1,19 @@
-import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import Image from 'next/image'
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Image from "next/image";
 
-import constructi from '../public/images/constructii.jpg'
-import electrice from '../public/images/Electrice.jpg'
-import gradina from '../public/images/Gradina.jpg'
-import metalurgice from '../public/images/metalurgice.jpg'
-import unelte from '../public/images/Unelte.jpg'
-import sanitare from '../public/images/sanitare.jpg'
+import constructi from "../public/images/constructii.jpg";
+import electrice from "../public/images/Electrice.jpg";
+import gradina from "../public/images/Gradina.jpg";
+import metalurgice from "../public/images/metalurgice.jpg";
+import unelte from "../public/images/Unelte.jpg";
+import sanitare from "../public/images/sanitare.jpg";
 
 export default function ResponsiveCarousel() {
   return (
     <div
-      className={'w-full max-h-fit bg-white'}
-      style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
+      className={"w-full max-h-fit bg-white"}
+      style={{ boxShadow: "0px 4px 10px rgba(0, 10, 150, 10)" }}
     >
       <Carousel
         infiniteLoop
@@ -26,7 +26,7 @@ export default function ResponsiveCarousel() {
             <Image
               alt="creativ-logo"
               height={300}
-              src={'/images/logo.png'}
+              src={"/images/logo.png"}
               width={300}
             />
 
@@ -47,7 +47,7 @@ export default function ResponsiveCarousel() {
             <Image
               alt="creativ-logo"
               height={500}
-              src={'/images/logo.png'}
+              src={"/images/logo.png"}
               width={500}
             />
             <div className="flex flex-col align-baseline self-start">
@@ -66,7 +66,7 @@ export default function ResponsiveCarousel() {
             <Image
               alt="creativ-logo"
               height={500}
-              src={'/images/logo.png'}
+              src={"/images/logo.png"}
               width={500}
             />
             <div className="flex flex-col align-baseline self-start">
@@ -83,7 +83,7 @@ export default function ResponsiveCarousel() {
             <Image
               alt="creativ-logo"
               height={500}
-              src={'/images/logo.png'}
+              src={"/images/logo.png"}
               width={500}
             />
             <div className="flex flex-col align-baseline self-start">
@@ -100,7 +100,7 @@ export default function ResponsiveCarousel() {
             <Image
               alt="creativ-logo"
               height={500}
-              src={'/images/logo.png'}
+              src={"/images/logo.png"}
               width={500}
             />
             <div className="flex flex-col align-baseline self-start">
@@ -117,7 +117,7 @@ export default function ResponsiveCarousel() {
             <Image
               alt="creativ-logo"
               height={500}
-              src={'/images/logo.png'}
+              src={"/images/logo.png"}
               width={500}
             />
             <div className="flex flex-col align-baseline self-start">
@@ -133,5 +133,5 @@ export default function ResponsiveCarousel() {
         </div>
       </Carousel>
     </div>
-  )
+  );
 }

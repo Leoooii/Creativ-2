@@ -1,29 +1,29 @@
-'use client'
-import React, { Suspense, useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useDebounce } from 'use-debounce'
+"use client";
+import React, { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDebounce } from "use-debounce";
 
-import FilterSidebar from '@/components/FilterSidebar'
-import { InvoicesTableSkeleton } from '@/components/ui/skeletons'
-import MaterialList from '@/components/MaterialsList'
-import { fetchCategories, fetchMaterials } from '@/lib/data'
-import { Category, Material } from '@/lib/definitions'
-import { useAuthStore } from '@/providers/auth-store-provider'
-import PaginationComponent from '@/components/layout/pagination'
+import FilterSidebar from "@/components/FilterSidebar";
+import { InvoicesTableSkeleton } from "@/components/ui/skeletons";
+import MaterialList from "@/components/MaterialsList";
+import { fetchCategories, fetchMaterials } from "@/lib/data";
+import { Category, Material } from "@/lib/definitions";
+import { useAuthStore } from "@/providers/auth-store-provider";
+import PaginationComponent from "@/components/layout/pagination";
 
 const CatalogPage = () => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const category = searchParams.get('category')
-  const [materials, setMaterials] = useState<Material[]>([])
-  const [value, setValue] = useState([0, 300])
-  const [debouncedValue] = useDebounce(value, 500)
-  const [numberOfItems, setNumberOfItems] = useState(0)
-  const [page, setPage] = useState(1)
-  const [numberOfPages, setNumberOfPages] = useState(1)
-  const isAdmin = useAuthStore(state => state.isAdmin)
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  const [materials, setMaterials] = useState<Material[]>([]);
+  const [value, setValue] = useState([0, 300]);
+  const [debouncedValue] = useDebounce(value, 500);
+  const [numberOfItems, setNumberOfItems] = useState(0);
+  const [page, setPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState(1);
+  const isAdmin = useAuthStore(state => state.isAdmin);
 
-  const [categories, setCategories] = useState<Category[]>([])
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const loadMaterials = async () => {
     if (category) {
@@ -32,43 +32,43 @@ const CatalogPage = () => {
         debouncedValue[0],
         debouncedValue[1],
         category
-      )
+      );
 
-      console.log(materialsData)
-      setNumberOfPages(totalPages)
-      setMaterials(materialsData)
-      setNumberOfItems(materialsData.length)
+      console.log(materialsData);
+      setNumberOfPages(totalPages);
+      setMaterials(materialsData);
+      setNumberOfItems(materialsData.length);
     } else {
       const { materialsData, totalPages } = await fetchMaterials(
         page,
         debouncedValue[0],
         debouncedValue[1]
-      )
+      );
 
-      setNumberOfPages(totalPages)
-      setMaterials(materialsData)
-      setNumberOfItems(materialsData.length)
+      setNumberOfPages(totalPages);
+      setMaterials(materialsData);
+      setNumberOfItems(materialsData.length);
     }
-  }
+  };
 
   useEffect(() => {
-    loadMaterials()
+    loadMaterials();
     const loadCategories = async () => {
       try {
-        const fetchedCategories = await fetchCategories()
+        const fetchedCategories = await fetchCategories();
 
-        setCategories(fetchedCategories)
+        setCategories(fetchedCategories);
       } catch (error) {
-        console.error('Failed to fetch categories', error)
+        console.error("Failed to fetch categories", error);
       }
-    }
+    };
 
-    loadCategories()
-  }, [debouncedValue, page, category])
+    loadCategories();
+  }, [debouncedValue, page, category]);
 
   const handleCategory = async (category: string) => {
-    router.push(`/catalog?category=${category}`)
-  }
+    router.push(`/catalog?category=${category}`);
+  };
 
   return (
     <div className="flex flex-col p-3  min-h-screen">
@@ -104,7 +104,7 @@ const CatalogPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CatalogPage
+export default CatalogPage;

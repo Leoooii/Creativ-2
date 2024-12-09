@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   Autocomplete,
   AutocompleteItem,
@@ -8,42 +8,42 @@ import {
   Image,
   Input,
   Switch
-} from '@nextui-org/react'
+} from "@nextui-org/react";
 
-import AutocompleteComponent from './Autocomplete'
+import AutocompleteComponent from "./Autocomplete";
 
-import { addMaterial, fetchCategories } from '@/lib/data'
-import { Category } from '@/lib/definitions'
+import { addMaterial, fetchCategories } from "@/lib/data";
+import { Category } from "@/lib/definitions";
 
 interface AddItemProps {}
 
 const defaultImg =
-  'https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/upload-bold-arrow-icon.png'
+  "https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/upload-bold-arrow-icon.png";
 
 const AddItemForm: React.FC<AddItemProps> = () => {
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('1')
-  const [imageURL, setImageURL] = useState('')
-  const [description, setDescription] = useState('')
-  const [available, setAvailable] = useState(true)
-  const [unit, setUnit] = useState('')
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("1");
+  const [imageURL, setImageURL] = useState("");
+  const [description, setDescription] = useState("");
+  const [available, setAvailable] = useState(true);
+  const [unit, setUnit] = useState("");
 
-  const [category, setCategory] = useState('Constructii')
-  const [categories, setCategories] = useState<Category[]>([])
+  const [category, setCategory] = useState("Constructii");
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const fetchedCategories = await fetchCategories() // Fetch categories din backend
+        const fetchedCategories = await fetchCategories(); // Fetch categories din backend
 
-        setCategories(fetchedCategories) // Setează categoriile
+        setCategories(fetchedCategories); // Setează categoriile
       } catch (error) {
-        console.error('Failed to fetch categories', error)
+        console.error("Failed to fetch categories", error);
       }
-    }
+    };
 
-    loadCategories()
-  }, [])
+    loadCategories();
+  }, []);
 
   const handleSubmit = async () => {
     const { message } = await addMaterial(
@@ -54,18 +54,18 @@ const AddItemForm: React.FC<AddItemProps> = () => {
       available,
       category,
       unit
-    )
+    );
 
-    alert(message)
-  }
+    alert(message);
+  };
 
   const handleCategory = async (category: string): Promise<void> => {
-    setCategory(category)
-  }
+    setCategory(category);
+  };
 
   const onUnitChange = (unit: string) => {
-    setUnit(unit)
-  }
+    setUnit(unit);
+  };
 
   return (
     <form
@@ -114,21 +114,21 @@ const AddItemForm: React.FC<AddItemProps> = () => {
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
-      <div className={'flex gap-1'}>
+      <div className={"flex gap-1"}>
         <AutocompleteComponent
           categories={categories}
-          defaultValue={''}
+          defaultValue={""}
           setCategory={handleCategory}
         />
         <Autocomplete
           allowsCustomValue={false}
           className="max-w-xs"
-          label={'Unitate de masura'}
+          label={"Unitate de masura"}
           variant="bordered"
           onInputChange={onUnitChange}
         >
-          {['kg', 'buc', 'l', 'ml'].map(item => {
-            return <AutocompleteItem key={item}>{item}</AutocompleteItem>
+          {["kg", "buc", "l", "ml"].map(item => {
+            return <AutocompleteItem key={item}>{item}</AutocompleteItem>;
           })}
         </Autocomplete>
       </div>
@@ -141,7 +141,7 @@ const AddItemForm: React.FC<AddItemProps> = () => {
         Adauga
       </Button>
     </form>
-  )
-}
+  );
+};
 
-export default AddItemForm
+export default AddItemForm;
