@@ -1,8 +1,7 @@
-export default function NotFound() {
-  return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-    </div>
-  )
+import React from 'react'
+
+const _NotFound = ({ children }: { children?: React.ReactNode }) => {
+  return <div>_NotFound {children}</div>
 }
+
+export default _NotFound

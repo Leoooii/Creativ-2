@@ -1,3 +1,8 @@
-export default function Custom404() {
-  return <h1>404 - Page Not Found</h1>
+// pages/404.tsx
+import React from 'react'
+
+const Custom404 = () => {
+  return <div>Page Not Found</div>
 }
+
+export default Custom404
