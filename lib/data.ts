@@ -286,7 +286,7 @@ export async function fetchRequests(email: string, filter?: string) {
         query = sql<
           {
             id: number
-            items: { id: string; count: number }[]
+            items: { id: number; count: number }[]
             message: string
             email: string
             status: string

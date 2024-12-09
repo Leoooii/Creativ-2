@@ -25,7 +25,7 @@ export const DropdownComponent = ({
         <Button
           className={'rounded-sm bg-transparent text-gray-100 my-2'}
           color={'primary'}
-          variant="faded "
+          // variant="faded "
         >
           <div className={'flex gap-2 '}>
             <h1 className={'font-bold'}>{name.toUpperCase()}</h1>

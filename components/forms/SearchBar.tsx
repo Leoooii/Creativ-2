@@ -6,22 +6,23 @@ import { Link } from '@nextui-org/link'
 import { useRouter } from 'next/navigation'
 
 import { fetchMaterialByFilter } from '@/lib/data'
+import { Material } from '@/lib/definitions'
 
 export default function SearchBar() {
-  const [searchItems, setSearchItems] = useState([
-    {
-      name: 'Leo',
-      id: '',
-    },
-  ])
+  const [searchItems, setSearchItems] = useState<Material[] | undefined>()
+
   const router = useRouter()
 
-  const fetchMaterial = async (value) => {
+  const fetchMaterial = async (value: string) => {
     const result = await fetchMaterialByFilter(value)
 
-    setSearchItems(result)
-    console.log(result, '2')
-    // if (result != null) console.log(result, 'vopsa')
+    if (result !== null) {
+      const flatResult = result.flat() // sau orice logică de transformare dorită
+
+      setSearchItems(flatResult)
+    } else {
+      setSearchItems(undefined) // Sau setăm un array gol, dacă preferi
+    }
   }
 
   useEffect(() => {
@@ -32,9 +33,9 @@ export default function SearchBar() {
     fetchMaterial(value)
   }
 
-  const onSelectionChange = (id) => {
-    router.push(`/catalog/${id}`)
-  }
+  // const onSelectionChange = (id: number) => {
+  //   router.push(`/catalog/${id}`)
+  // }
 
   return (
     <Autocomplete
@@ -45,7 +46,7 @@ export default function SearchBar() {
       label="Cauta produs"
       variant="faded"
       onInputChange={onInputChange}
-      onSelectionChange={onSelectionChange}
+      // onSelectionChange={onSelectionChange}
     >
       {(item) => (
         <AutocompleteItem key={item.id}>
