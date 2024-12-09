@@ -59,7 +59,7 @@ const CatalogPage = () => {
 
         setCategories(fetchedCategories)
       } catch (error) {
-        alert('Failed to fetch categories', error)
+        alert('Failed to fetch categories')
       }
     }
 
