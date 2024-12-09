@@ -36,7 +36,7 @@
     }
   },
   "rules": {
-    "no-console": "warn",
+    "no-console": "off",
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
@@ -86,7 +86,7 @@
     ],
     "react/self-closing-comp": "warn",
     "react/jsx-sort-props": [
-      "warn",
+      "off",
       {
         "callbacksLast": true,
         "shorthandFirst": true,
