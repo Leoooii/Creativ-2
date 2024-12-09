@@ -6,6 +6,7 @@ import {
   DropdownTrigger
 } from '@nextui-org/react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
+import { Link } from '@nextui-org/link'
 
 interface DropdownItem {
   label: string
@@ -49,9 +50,11 @@ export const DropdownComponent = ({
             key={item.label}
             className={'default bg-white font-bold'}
             color={'primary'}
-            href={`/${section}?category=${item.label}`}
+            // href={`/${section}?category=${item.label}`}
           >
-            <h1 className={'font-bold'}>{item.label}</h1>
+            <Link href={`/${section}?category=${item.label}`}>
+              {item.label}
+            </Link>
           </DropdownItem>
         )}
       </DropdownMenu>

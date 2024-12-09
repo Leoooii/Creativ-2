@@ -29,12 +29,17 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   numberOfPages,
   isAdmin
 }) => (
-  <div className="w-1/4 flex flex-col  gap-2 right-0 border-r-4 p-3 sticky top-0 h-full text-gray-300 font-extrabold">
-    <div>
+  <div className=" flex flex-col  gap-2  border-b-4 p-1  h-full text-gray-300 font-extrabold">
+    <div
+      className={
+        'flex flex-col justify-center sm:flex-row sm:justify-between gap-5'
+      }
+    >
       <BreadCrumbBar />
-      <h1>Selectează filtre:</h1>
+
       <Slider
-        className="max-w-md mb-5"
+        className="max-w-sm mb-3"
+        color={'secondary'}
         formatOptions={{ style: 'currency', currency: 'LEI' }}
         label="Interval preț"
         maxValue={300}
@@ -45,17 +50,12 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           setValue(Array.isArray(value) ? value : [value])
         }
       />
-      {/*<AutocompleteComponent*/}
-      {/*  categories={categories}*/}
-      {/*  defaultValue={''}*/}
-      {/*  setCategory={setCategory}*/}
-      {/*/>*/}
     </div>
 
     <div>
       {isAdmin && (
         <div className={'flex gap-1'}>
-          <CustomModal buttonName={'Adauga Item'} header={'hello'}>
+          <CustomModal buttonName={'Adauga Item'} header={''}>
             <AddItemForm />
           </CustomModal>
           <CustomModal

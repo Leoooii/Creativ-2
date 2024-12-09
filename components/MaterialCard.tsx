@@ -98,7 +98,7 @@ const MaterialCard: React.FC<MaterialProps> = ({ material, onDelete }) => {
         {/*  value={name}*/}
         {/*  onChange={handleNameChange}*/}
         {/*/>*/}
-        <h1 className={'font-bold'}>{name}</h1>
+        <h1 className={'font-bold text-2xl'}>{name}</h1>
         <h2>{material.category}</h2>
         <h1 className={'text-black font-bold'}>{String(price)} lei</h1>
         {/*<Input*/}

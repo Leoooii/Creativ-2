@@ -5,26 +5,33 @@ import { useEffect, useState } from 'react'
 
 import { useCartStore } from '@/providers/cart-store'
 import CartItem from '@/components/CartItem'
-import { addRequest, fetchRequests } from '@/lib/data'
+import { addRequest, deleteRequest, fetchRequests } from '@/lib/data'
 import { useAuthStore } from '@/providers/auth-store-provider'
+import AdminAnswer from '@/components/forms/adminAnswer'
 
 type Request = {
-  id: string
+  id: number
   items: { id: string; count: number }[]
   message: string
   email: string
   status: string
+  answer?: string
 }
 
 const CartItems = () => {
   const { items } = useCartStore()
   const user = useAuthStore(state => state.user)
+  const isAdmin = useAuthStore(state => state.isAdmin)
   const [requests, setRequests] = useState<Request[] | null>(null)
   const [requestMessage, setRequestMessage] = useState('')
 
   const fetchData = async () => {
     try {
-      if (user?.email) {
+      if (isAdmin) {
+        let data: Request[] = await fetchRequests(user.email!, 'all')
+
+        setRequests(data)
+      } else if (user?.email) {
         let data: Request[] = await fetchRequests(user.email)
 
         setRequests(data)
@@ -39,12 +46,12 @@ const CartItems = () => {
       // [{ id: 7, count: 10 }]
       items,
       requestMessage,
-      user?.email,
+      user?.email || '',
       'trimis'
     )
 
     alert(message)
-    fetchData()
+    await fetchData()
   }
 
   useEffect(() => {
@@ -67,9 +74,19 @@ const CartItems = () => {
             onChange={e => setRequestMessage(e.target.value)}
           />
 
-          <Button color={'primary'} onClick={handleSubmit}>
+          <Button
+            className={'mt-5'}
+            color={'primary'}
+            isDisabled={!user}
+            onClick={handleSubmit}
+          >
             Trimite cererea de oferta
           </Button>
+          {!user && (
+            <h1>
+              Va rugam sa intrati in cont pentru a trimite o cerere de oferta
+            </h1>
+          )}
         </div>
       ) : (
         <h1>
@@ -77,10 +94,12 @@ const CartItems = () => {
           a putea trimite o cerere de oferta
         </h1>
       )}
-      <div className={'mt-2'}>
-        <h1 className={'text-center m-3 font-extrabold text-2xl'}>
-          Istoric cereri
-        </h1>
+      <div className={'mt-2 '}>
+        {requests && (
+          <h1 className={'text-center m-3 font-extrabold text-2xl'}>
+            Istoric cereri
+          </h1>
+        )}
         {requests &&
           Array.isArray(requests) &&
           requests.map((request: Request) => (
@@ -90,10 +109,28 @@ const CartItems = () => {
                 'bg-gray-800 mb-3 p-2 flex flex-col gap-2 text-white rounded-md'
               }
             >
-              {request.message},{request.email}
+              <div className={'flex justify-between'}>
+                <h1>{request.message}</h1>
+                <h2>{request.email}</h2>
+              </div>
               {request.items.map(item => {
-                return <CartItem key={item.id} item={item} />
+                return <CartItem key={item.id} isEditable={false} item={item} />
               })}
+              <h1>{request.answer}</h1>
+              {isAdmin && !request.answer && (
+                <AdminAnswer fetchData={fetchData} id={request.id} />
+              )}
+              <Button
+                color={'danger'}
+                variant={'ghost'}
+                onClick={() => {
+                  deleteRequest(request.id).then(() => {
+                    fetchData()
+                  })
+                }}
+              >
+                Sterge
+              </Button>
             </div>
           ))}
       </div>

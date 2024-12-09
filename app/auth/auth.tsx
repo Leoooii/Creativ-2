@@ -35,7 +35,15 @@ const Auth = () => {
               {adminText} {user.displayName}
             </h1>
             <h2>{user.email}</h2>
-            <Button color={'danger'} size={'sm'} onClick={logout}>
+            <Button
+              color={'danger'}
+              size={'sm'}
+              onClick={() => {
+                logout().then(() => {
+                  router.push('/')
+                })
+              }}
+            >
               Logout
             </Button>
           </div>
@@ -60,7 +68,12 @@ const Auth = () => {
         </div>
       ) : (
         <div className="flex justify-center content-center mx-2">
-          <Button size={'lg'} variant={'faded'} onClick={login}>
+          <Button
+            color={'primary'}
+            size={'lg'}
+            variant={'faded'}
+            onClick={login}
+          >
             Login with Google
           </Button>
         </div>

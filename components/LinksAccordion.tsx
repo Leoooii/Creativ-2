@@ -17,7 +17,7 @@ const LinksAccordion = () => {
       <AccordionItem
         key="1"
         aria-label="Accordion 1"
-        className={'flex flex-col shadow-blue-950'}
+        className={'flex-col shadow-blue-950 hidden'}
         style={{ boxShadow: '0px 4px 10px rgba(0, 10, 150, 10)' }}
         title="Metalurgice"
       >

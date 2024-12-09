@@ -12,7 +12,7 @@ export default async function Page({
   return (
     <div
       className={
-        'bg-blue-950 my-12 rounded-lg shadow-sm grid grid-cols-2  p-12 text-white gap-7'
+        'bg-blue-950 my-12 rounded-lg shadow-sm grid grid-cols-1 sm:grid-cols-2  p-12 text-white gap-7'
       }
       style={{ boxShadow: '0px 4px 10px rgba(0, 00, 200, 50)' }}
     >

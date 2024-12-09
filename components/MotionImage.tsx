@@ -10,7 +10,7 @@ const MotionImage = ({
   left: boolean
 }) => (
   <motion.div
-    className={'w-1/2'}
+    className={'w-full sm:w-1/2'}
     initial={{ x: `${left ? '-' : ''}100%`, opacity: 0 }}
     transition={{ duration: 2, ease: 'anticipate' }}
     viewport={{ once: true }}

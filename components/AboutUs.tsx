@@ -28,7 +28,7 @@ const list = [
 
 export default function AboutUs() {
   return (
-    <div className={` grid grid-cols-3  gap-10`}>
+    <div className={` grid md:grid-cols-3 grid-cols-1  gap-10`}>
       {list.map(item => {
         return (
           <div

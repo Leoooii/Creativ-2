@@ -10,22 +10,22 @@ import ShopingCart from '@/components/layout/ShopingCart'
 
 export default function Navbar() {
   return (
-    <div className="flex h-full md:flex-row flex-col justify-between  mx-auto px-20 py-3">
-      <div className="flex gap-2 text-white align-middle items-center w-2/5">
+    <div className="flex h-full lg:flex-row flex-col justify-center md:justify-between  px-0 md:px-20 py-3">
+      <div className="flex gap-2 text-white align-middle items-center justify-center">
         <PhoneIcon color={'white'} height={16} width={16} />
         <div className="border-l-2 border-white h-3" />
         <h1>0751-839-308</h1>
         <div className="border-l-2 border-white h-3" />
         <h1>contact@creativtub.ro</h1>
       </div>
-      <Link className="my-2 w-1/5" href="/">
+      <Link className="my-2 flex justify-center" href="/">
         <CreativLogo />
       </Link>
-      <div className="flex items-center flex-col gap-3  md:flex-row md:justify-end w-2/5">
+      <div className="flex items-center  gap-3  flex-row justify-center">
         <SearchBar />
         <NavLinks />
-        <AuthButton />
         <ShopingCart />
+        <AuthButton />
       </div>
     </div>
   )

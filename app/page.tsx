@@ -21,15 +21,7 @@ export default function Home() {
       <hr className="border-blue-800" />
       <AboutUs />
       <hr className="border-blue-800" />
-      <div className="flex justify-between gap-5">
-        {/*<Image*/}
-        {/*  alt="worker"*/}
-        {/*  className=" rounded-xl w-1/2 shadow-lg"*/}
-        {/*  height={3072}*/}
-        {/*  src={'/images/work.jpg'}*/}
-        {/*  style={{ boxShadow: '0px 5px 5px rgba(220, 210, 250, 250)' }}*/}
-        {/*  width={4608}*/}
-        {/*/>*/}
+      <div className="flex flex-col justify-center  sm:flex-row sm:justify-between gap-5">
         <MotionImage alt={'muncitor'} left={true} src={'/images/work.jpg'} />
         <MotionImage
           alt={'building'}

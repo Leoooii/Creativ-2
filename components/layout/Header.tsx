@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/react'
 
 import {
@@ -13,12 +13,18 @@ import {
 } from '../../public/data/DummyData'
 
 import { DropdownComponent } from '@/components/Dropdown'
-// import { SearchComponent } from './SearchComponent';
 
 const Header = ({ section }: { section: string }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <Navbar isBordered shouldHideOnScroll className="p-1 w-full bg-gray-800">
-      <NavbarContent className="hidden sm:flex gap-4 w-full" justify="center">
+    <Navbar
+      isBordered
+      shouldHideOnScroll
+      className="p-1 bg-gray-800  "
+      onMenuOpenChange={setIsMenuOpen}
+    >
+      <NavbarContent className="sm:flex flex gap-4 w-full mx-auto bg-gray-800 p-4 overflow-x-auto max-w-none">
         <NavbarItem>
           <DropdownComponent array={Gradina} name="Gradina" section={section} />
         </NavbarItem>
@@ -54,11 +60,15 @@ const Header = ({ section }: { section: string }) => {
           />
         </NavbarItem>
       </NavbarContent>
+
       {/* <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <SearchComponent />
         </NavbarItem>
       </NavbarContent> */}
+      {/*<NavbarMenu className={'z-20'}>*/}
+      {/*  <div>hei</div>*/}
+      {/*</NavbarMenu>*/}
     </Navbar>
   )
 }

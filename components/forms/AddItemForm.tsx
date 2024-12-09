@@ -1,7 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { Button, Image, Input, Switch } from '@nextui-org/react'
+import {
+  Autocomplete,
+  AutocompleteItem,
+  Button,
+  Image,
+  Input,
+  Switch
+} from '@nextui-org/react'
 
 import AutocompleteComponent from './Autocomplete'
 
@@ -19,6 +26,7 @@ const AddItemForm: React.FC<AddItemProps> = () => {
   const [imageURL, setImageURL] = useState('')
   const [description, setDescription] = useState('')
   const [available, setAvailable] = useState(true)
+  const [unit, setUnit] = useState('')
 
   const [category, setCategory] = useState('Constructii')
   const [categories, setCategories] = useState<Category[]>([])
@@ -44,7 +52,8 @@ const AddItemForm: React.FC<AddItemProps> = () => {
       imageURL,
       description,
       available,
-      category
+      category,
+      unit
     )
 
     alert(message)
@@ -52,6 +61,10 @@ const AddItemForm: React.FC<AddItemProps> = () => {
 
   const handleCategory = async (category: string): Promise<void> => {
     setCategory(category)
+  }
+
+  const onUnitChange = (unit: string) => {
+    setUnit(unit)
   }
 
   return (
@@ -101,12 +114,24 @@ const AddItemForm: React.FC<AddItemProps> = () => {
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
-      <AutocompleteComponent
-        categories={categories}
-        defaultValue={''}
-        setCategory={handleCategory}
-      />
-      {category}
+      <div className={'flex gap-1'}>
+        <AutocompleteComponent
+          categories={categories}
+          defaultValue={''}
+          setCategory={handleCategory}
+        />
+        <Autocomplete
+          allowsCustomValue={false}
+          className="max-w-xs"
+          label={'Unitate de masura'}
+          variant="bordered"
+          onInputChange={onUnitChange}
+        >
+          {['kg', 'buc', 'l', 'ml'].map(item => {
+            return <AutocompleteItem key={item}>{item}</AutocompleteItem>
+          })}
+        </Autocomplete>
+      </div>
 
       <Switch isSelected={available} onValueChange={setAvailable}>
         In stoc

@@ -16,12 +16,15 @@ const ShopingCart = () => {
       {/*{user && (*/}
       <div className="relative">
         <Link href={'/auth'}>
-          <ShoppingCartIcon color={'white'} height={40} width={40} />
+          <ShoppingCartIcon
+            className="w-8 hover:cursor-pointer"
+            color={'white'}
+          />
         </Link>
 
         <div
           className={
-            'bg-red-800 rounded-full absolute top-8 left-8 px-2 text-white'
+            'bg-red-800 rounded-full absolute top-6 left-6 px-2 text-white'
           }
         >
           {items.length}

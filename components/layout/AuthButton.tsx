@@ -10,6 +10,7 @@ import { Bounce, toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { UserIcon } from '@heroicons/react/24/outline'
+import { useRouter } from 'next/navigation'
 
 import { useAuthStore } from '@/providers/auth-store-provider'
 
@@ -19,6 +20,7 @@ export default function AuthButton() {
   const logout = useAuthStore(state => state.logout)
   const isAdmin = useAuthStore(state => state.isAdmin)
   const notify = () => toast('Autentificare reusita')
+  const router = useRouter()
 
   return (
     <Popover placement="bottom" showArrow={true}>
@@ -29,7 +31,14 @@ export default function AuthButton() {
       </PopoverTrigger>
       <PopoverContent className={'py-2'}>
         {user ? (
-          <Button color={'danger'} onClick={logout}>
+          <Button
+            color={'danger'}
+            onClick={() => {
+              logout().then(() => {
+                router.push('/')
+              })
+            }}
+          >
             Logout
           </Button>
         ) : (

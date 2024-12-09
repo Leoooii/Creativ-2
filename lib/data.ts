@@ -104,14 +104,29 @@ export async function addCategory(name: string) {
 
 export async function fetchMaterialById(id: string) {
   try {
-    // Query-ul pentru a selecta materialul cu ID-ul specificat
     const data = await sql<Material>`SELECT * FROM Materials WHERE id = ${id}`
-
-    console.log(data.rows[0], 'baa')
 
     return data.rows[0]
   } catch (error) {
     console.log(error)
+
+    return null
+  }
+}
+
+export async function fetchMaterialByFilter(filter: string) {
+  try {
+    // Query-ul pentru a selecta materialul cu ID-ul specificat
+    const data = await sql<Material[]>`
+  SELECT * 
+  FROM Materials 
+  WHERE name LIKE ${'%' + filter + '%'}`
+
+    // console.log(data.rows, filter)
+
+    return data.rows
+  } catch (error) {
+    console.log(error, 'eroare')
 
     return null
   }
@@ -123,7 +138,8 @@ export async function addMaterial(
   image_url: string,
   description: string,
   available: boolean,
-  category: string
+  category: string,
+  unit: string
 ) {
   if (
     !name ||
@@ -131,7 +147,8 @@ export async function addMaterial(
     !image_url ||
     !description ||
     !available ||
-    !category
+    !category ||
+    !unit
   ) {
     throw new Error('All fields are required')
   }
@@ -139,12 +156,10 @@ export async function addMaterial(
 
   try {
     await sql`
-      INSERT INTO Materials (name, price, image_url,description,available,category)
-      VALUES (${name}, ${Number(price)}, ${image_url},${description},${available},${category});
+      INSERT INTO Materials (name, price, image_url,description,available,category,unit)
+      VALUES (${name}, ${Number(price)}, ${image_url},${description},${available},${category},${unit});
     `
     const data = await sql<Material>`SELECT * FROM Materials`
-
-    console.log(data.rows, 'baa')
 
     return { message: 'Material added successfully' }
   } catch (error) {
@@ -233,12 +248,27 @@ export async function addRequest(
   }
 }
 
-export async function fetchRequests(email: string) {
+export async function fetchRequests(email: string, filter?: string) {
   try {
-    let query = sql<Request[]>`
+    let query
+
+    switch (filter) {
+      case 'all':
+        query = sql<Request[]>`
+    SELECT * FROM Request 
+  `
+        break
+      case 'pending':
+        query = sql<Request[]>`
+    SELECT * FROM Request WHERE status='pending'
+  `
+        break
+
+      default:
+        query = sql<Request[]>`
     SELECT * FROM Request WHERE email=${email}
   `
-
+    }
     const requests = await query
 
     console.log(requests.rows.flat(), '2')
@@ -247,5 +277,54 @@ export async function fetchRequests(email: string) {
   } catch (error) {
     console.error('Failed to fetch materials:', error)
     throw new Error('Failed to fetch materials')
+  }
+}
+
+export async function updateRequest(
+  id: number,
+  answer: string,
+  status: string
+) {
+  if (!id || !answer || !status) {
+    throw new Error('ID, answer,status are required')
+  }
+
+  try {
+    const result = await sql`
+      UPDATE Request
+      SET answer = ${answer}, status = ${status}
+      WHERE id = ${id};
+    `
+
+    console.log(answer, status, id)
+
+    // Verifică numărul de rânduri afectate
+    if (result.rowCount === 0) {
+      throw new Error('Request not found')
+    }
+
+    return { message: 'Material updated successfully' }
+  } catch (error) {
+    console.error('Failed to update material:', error)
+    throw new Error('Failed to update request')
+  }
+}
+
+export async function deleteRequest(id: number) {
+  try {
+    const result = await sql`
+      DELETE FROM Request
+      WHERE id = ${id};
+    `
+
+    // Verifică numărul de rânduri afectate
+    if (result.rowCount === 0) {
+      throw new Error('Material not found')
+    }
+
+    return { message: 'Material deleted successfully' }
+  } catch (error) {
+    console.error('Failed to delete material:', error)
+    throw new Error('Failed to delete material')
   }
 }

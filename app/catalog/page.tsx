@@ -71,7 +71,7 @@ const CatalogPage = () => {
   }
 
   return (
-    <div className="flex p-3 justify-between min-h-screen">
+    <div className="flex flex-col p-3  min-h-screen">
       <FilterSidebar
         categories={categories}
         isAdmin={isAdmin}
@@ -83,7 +83,7 @@ const CatalogPage = () => {
         setValue={setValue}
         value={value}
       />
-      <div className="w-4/5  h-full ">
+      <div className="  h-full ">
         {/*<div className="w-full text-center bg-blue-950 text-white rounded-sm mb-2">*/}
         {/*  <h1>{category}</h1>*/}
         {/*</div>*/}

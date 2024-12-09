@@ -17,7 +17,7 @@ interface CartItemProps {
 
 const CartItem = ({ item, isEditable }: CartItemProps) => {
   const [material, setMaterial] = useState<Material>()
-  const { incrementItemCount, decrementItemCount } = useCartStore()
+  const { incrementItemCount, decrementItemCount, removeItem } = useCartStore()
 
   useEffect(() => {
     const fetchMaterial = async () => {
@@ -57,7 +57,11 @@ const CartItem = ({ item, isEditable }: CartItemProps) => {
             color={'danger'}
             size={'sm'}
             onClick={() => {
-              decrementItemCount(item.id)
+              if (item.count > 1) {
+                decrementItemCount(item.id)
+              } else {
+                removeItem(item.id)
+              }
             }}
           >
             <MinusCircleIcon />
