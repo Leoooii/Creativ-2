@@ -11,10 +11,16 @@ import { Category, Material } from '@/lib/definitions'
 import { useAuthStore } from '@/providers/auth-store-provider'
 import PaginationComponent from '@/components/layout/pagination'
 
+function Search() {
+  const searchParams = useSearchParams()
+
+  return searchParams.get('category')
+}
+
 const CatalogPage = () => {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const category = searchParams.get('category')
+
+  const category = Search()
   const [materials, setMaterials] = useState<Material[]>([])
   const [value, setValue] = useState([0, 300])
   const [debouncedValue] = useDebounce(value, 500)
